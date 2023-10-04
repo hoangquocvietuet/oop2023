@@ -128,8 +128,8 @@ public class Word extends DualLanguageStructure{
     }
 
     /**
-     * Add a related sentence to the antonyms list.
-     * @param s The sentence.
+     * Add a sentence to the sentences list.
+     * @param s The sentence
      */
     public void addSentence(Sentence s) {
         this.sentences.add(s);
