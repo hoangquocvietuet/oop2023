@@ -1,5 +1,7 @@
 package org.oop2023.utils;
 
+import java.util.ArrayList;
+
 class TrieNode<E> {
     public static final int CHARACTERS_SIZE = 128;
     private E value;
@@ -79,6 +81,7 @@ public class Trie<E> {
      * @param value The value
      */
     public void insert(String key, E value) {
+//        key += '@';
         TrieNode<E> current = root;
         for (int i = 0; i < key.length(); i++) {
             char c = key.charAt(i);
@@ -99,6 +102,7 @@ public class Trie<E> {
      * @return The value
      */
     public E find(String key) {
+//        key += '@';
         TrieNode<E> current = root;
         for (int i = 0; i < key.length(); i++) {
             char c = key.charAt(i);
@@ -115,8 +119,9 @@ public class Trie<E> {
      * Delete a key-value pair from the trie.
      * @param key The key
      */
-    public void delete(String key) {
-        delete(root, key, 0);
+    public boolean delete(String key) {
+//        key += '@';
+        return delete(root, key, 0);
     }
 
     /**
@@ -148,6 +153,73 @@ public class Trie<E> {
     }
 
     /**
+     * Get all keys in the sub-trie of a given key.
+     * @param key The key
+     * @return All keys
+     */
+    public ArrayList<String> getAllChildKeys(String key) {
+        return getAllChildKeys(root, "", key, 0);
+    }
+
+    /**
+     * Get all keys in the sub-trie of a given key.
+     * @param current The current node
+     * @param key The key
+     * @return All keys
+     */
+    private ArrayList<String> getAllChildKeys(TrieNode<E> current, String key, String sampleKey, int index) {
+        ArrayList<String> keys = new ArrayList<String>();
+        if (current.getValue() != null) {
+            keys.add(key);
+        }
+        for (int i = 0; i < current.getChildren().length; i++) {
+            if (index < sampleKey.length()) {
+                if (sampleKey.charAt(index) != (char) i) {
+                    continue;
+                }
+            }
+            if (current.getChildren()[i] != null) {
+                keys.addAll(getAllChildKeys(current.getChildren()[i], key + (char) i, sampleKey, index + 1));
+            }
+        }
+        return keys;
+    }
+
+    /**
+     * Get all keys in the trie.
+     * @return All keys
+     */
+    public ArrayList<String> getAllKeys() {
+        return getAllChildKeys("");
+    }
+
+    /**
+     * Get all values in the trie.
+     * @return All values
+     */
+    public ArrayList<E> getAllValues() {
+        return getAllValues(root);
+    }
+
+    /**
+     * Get all values in the trie.
+     * @param current The current node
+     * @return All values
+     */
+    private ArrayList<E> getAllValues(TrieNode<E> current) {
+        ArrayList<E> values = new ArrayList<E>();
+        if (current.getValue() != null) {
+            values.add(current.getValue());
+        }
+        for (int i = 0; i < current.getChildren().length; i++) {
+            if (current.getChildren()[i] != null) {
+                values.addAll(getAllValues(current.getChildren()[i]));
+            }
+        }
+        return values;
+    }
+
+    /**
      * Test client.
      */
     public static void main(String[] args) {
@@ -174,5 +246,17 @@ public class Trie<E> {
         System.out.println(trie.find("a"));
         System.out.println(trie.find("ab"));
         System.out.println(trie.find("lmno"));
+
+        System.out.println("--------------------");
+        ArrayList<String> keys = trie.getAllChildKeys("");
+        for (String key : keys) {
+            System.out.println(key);
+        }
+
+        System.out.println("--------------------");
+        ArrayList<Integer> values = trie.getAllValues();
+        for (Integer value : values) {
+            System.out.println(value);
+        }
     }
 }

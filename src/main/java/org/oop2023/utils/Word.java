@@ -134,4 +134,18 @@ public class Word extends DualLanguageStructure{
     public void addSentence(Sentence s) {
         this.sentences.add(s);
     }
+
+    /**
+     * Print the word.
+     */
+    public void debug() {
+        System.out.println("Word: " + content);
+        System.out.println("Meaning: " + meaning);
+        System.out.println("Language: " + language);
+        System.out.println("Word class: " + wordClass);
+        System.out.println("Pronunciation: " + pronunciation);
+        System.out.println("Antonyms: " + antonyms);
+        System.out.println("Synonyms: " + synonyms);
+        System.out.println("Sentences: " + sentences);
+    }
 }
