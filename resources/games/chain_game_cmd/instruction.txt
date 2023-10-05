@@ -1,0 +1,8 @@
+You will start with a word of your choice.
+The computer will then choose a word from the dictionary whose starting letter is the same as the ending lettter of your word.
+You will have to do the same: choose a word that has the starting letter satisfying the aforementioned condition.
+For example: hello -> orz -> zebra -> apple
+The longer your word is, the more points you earn. However, it must be in the dictionary.
+Type /ff to end the game.
+Type /help to get help.
+The game will end when you type /ff or when the computer fails to give a word (which is not likely to happen).
