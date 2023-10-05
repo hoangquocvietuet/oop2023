@@ -1,5 +1,8 @@
 package org.oop2023.utils;
 
+import org.oop2023.utils.enums.Language;
+import org.oop2023.utils.enums.WordClass;
+
 import java.util.ArrayList;
 
 public class Word extends DualLanguageStructure{
@@ -133,6 +136,23 @@ public class Word extends DualLanguageStructure{
      */
     public void addSentence(Sentence s) {
         this.sentences.add(s);
+    }
+
+    /**
+     * Check if a word is valid (not null, no invalid characters).
+     * @param word The word to be checked
+     * @return true if the word is valid, false otherwise
+     */
+    public static boolean isInvalid(String word) {
+        if (word == null || word.isEmpty()) {
+            return true;
+        }
+        for (int i = 0; i < word.length(); i++) {
+            if (CharMapMethods.encode(word.charAt(i)) == 0) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

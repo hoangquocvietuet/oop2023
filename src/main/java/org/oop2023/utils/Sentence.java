@@ -1,5 +1,7 @@
 package org.oop2023.utils;
 
+import org.oop2023.utils.enums.Language;
+
 public class Sentence extends DualLanguageStructure{
     /**
      * Default constructor

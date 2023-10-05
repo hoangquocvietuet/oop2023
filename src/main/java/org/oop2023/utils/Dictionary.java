@@ -1,5 +1,7 @@
 package org.oop2023.utils;
 
+import org.oop2023.utils.enums.Language;
+
 import java.util.ArrayList;
 
 public class Dictionary {
@@ -12,6 +14,11 @@ public class Dictionary {
     public Dictionary() {
         wordsTrie = new Trie<>();
         language = Language.UNKNOWN;
+    }
+
+    public Dictionary(Language language) {
+        this.wordsTrie = new Trie<>();
+        this.language = language;
     }
 
     /**
@@ -43,10 +50,29 @@ public class Dictionary {
      * @param word The word to be added
      */
     public boolean add(Word word) {
+        if (Word.isInvalid(word.getContent())) {
+            return false;
+        }
+        if (word.getLanguage() != language) {
+            return false;
+        }
         if (wordsTrie.find(word.getContent()) != null) {
             return false;
         }
         wordsTrie.insert(word.getContent(), word);
+        return true;
+    }
+
+    /**
+     * Remove a word from the dictionary.
+     * @param word The word to be removed
+     * @return true if the word is removed, false otherwise
+     */
+    public boolean delete(String word) {
+        if (wordsTrie.find(word) == null) {
+            return false;
+        }
+        wordsTrie.delete(word);
         return true;
     }
 
@@ -69,7 +95,7 @@ public class Dictionary {
      * @param newWord The new word
      * @return true if the word is changed, false otherwise
      */
-    public boolean change(Word word, Word newWord) {
+    public boolean change(String word, Word newWord) {
         if (!this.delete(word)) {
             return false;
         }
@@ -90,8 +116,8 @@ public class Dictionary {
      * @param word The given word
      * @return The list of alike words
      */
-    public ArrayList<String> getAlike(String word) {
-        return wordsTrie.getAllChildKeys(word);
+    public ArrayList<String> getAlike(String word, int maxSize) {
+        return wordsTrie.getChildKeys(word, maxSize);
     }
 
     /**
@@ -116,11 +142,8 @@ public class Dictionary {
      * @param args Command line arguments
      */
     public static void main(String[] args) {
-        Dictionary dict = new Dictionary();
-        dict.add(new Word("hello", "xin chào", Language.ENGLISH));
-        dict.add(new Word("helicopter", "trực thăng", Language.ENGLISH));
-        dict.add(new Word("hero", "anh hùng", Language.ENGLISH));
-        dict.add(new Word("he", "anh ấy", Language.ENGLISH));
-        System.out.println(dict.getAlike("he"));
+        Dictionary dict = new Dictionary(Language.ENGLISH);
+        dict.add(new Word("hello?", "xin chào?", Language.ENGLISH));
+        System.out.println(dict.getWordsList());
     }
 }

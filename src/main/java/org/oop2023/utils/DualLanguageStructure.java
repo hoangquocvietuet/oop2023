@@ -1,5 +1,7 @@
 package org.oop2023.utils;
 
+import org.oop2023.utils.enums.Language;
+
 public abstract class DualLanguageStructure {
     protected String content;
     protected String meaning;
