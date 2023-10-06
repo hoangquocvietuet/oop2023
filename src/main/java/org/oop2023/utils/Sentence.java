@@ -2,13 +2,15 @@ package org.oop2023.utils;
 
 import org.oop2023.utils.enums.Language;
 
+import java.util.ArrayList;
+
 public class Sentence extends DualLanguageStructure{
     /**
      * Default constructor
      */
     public Sentence() {
         content = "";
-        meaning = "";
+        meaning = new ArrayList<>();
         language = Language.UNKNOWN;
     }
 
@@ -18,7 +20,7 @@ public class Sentence extends DualLanguageStructure{
      */
     public Sentence(String content) {
         this.content = content;
-        this.meaning = "";
+        this.meaning = new ArrayList<>();
         this.language = Language.UNKNOWN;
     }
 
@@ -30,7 +32,8 @@ public class Sentence extends DualLanguageStructure{
      */
     public Sentence(String content, String meaning, Language language) {
         this.content = content;
-        this.meaning = meaning;
+        new ArrayList<>();
+        this.addMeaning(meaning);
         this.language = language;
     }
 

@@ -14,7 +14,7 @@ public class DictionaryTest {
     public void testAdd1() {
         Dictionary dict = new Dictionary(Language.ENGLISH);
         dict.add(new Word("hello", "xin chào", Language.ENGLISH));
-        assertTrue(dict.getDetails("hello").getMeaning().equals("xin chào"));
+        assertTrue(dict.getDetails("hello").getMeaning().get(0).equals("xin chào"));
     }
 
     /**
@@ -25,7 +25,7 @@ public class DictionaryTest {
         Dictionary dict = new Dictionary(Language.ENGLISH);
         dict.add(new Word("hello", "xin chào", Language.ENGLISH));
         dict.add(new Word("hello", "chào", Language.ENGLISH));
-        assertFalse(dict.getDetails("hello").getMeaning().equals("chào"));
+        assertFalse(dict.getDetails("hello").getMeaning().get(0).equals("chào"));
         assertFalse(dict.getWordsList().size() > 1);
     }
 
@@ -83,7 +83,7 @@ public class DictionaryTest {
         Dictionary dict = new Dictionary(Language.ENGLISH);
         dict.add(new Word("hello", "xin chào", Language.ENGLISH));
         dict.change("hello", new Word("hello", "chào", Language.ENGLISH));
-        assertTrue(dict.getDetails("hello").getMeaning().equals("chào"));
+        assertTrue(dict.getDetails("hello").getMeaning().get(0).equals("chào"));
     }
 
     /**
@@ -148,7 +148,7 @@ public class DictionaryTest {
     public void testGetDetails() {
         Dictionary dict = new Dictionary(Language.ENGLISH);
         dict.add(new Word("hello", "xin chào", Language.ENGLISH));
-        assertTrue(dict.getDetails("hello").getMeaning().equals("xin chào"));
+        assertTrue(dict.getDetails("hello").getMeaning().get(0).equals("xin chào"));
     }
 
     /**
@@ -158,6 +158,6 @@ public class DictionaryTest {
     public void testGetWords() {
         Dictionary dict = new Dictionary(Language.ENGLISH);
         dict.add(new Word("hello", "xin chào", Language.ENGLISH));
-        assertTrue(dict.getWords().get(0).getMeaning().equals("xin chào"));
+        assertTrue(dict.getWords().get(0).getMeaning().get(0).equals("xin chào"));
     }
 }

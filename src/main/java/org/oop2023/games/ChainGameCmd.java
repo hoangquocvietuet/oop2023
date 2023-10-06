@@ -36,6 +36,21 @@ public class ChainGameCmd extends Game {
     }
 
     /**
+     * Get input integer.
+     * @return input integer
+     */
+    private int getInputInt() {
+        String choiceRaw = sc.next();
+        int choice = 0;
+        try {
+            choice = Integer.parseInt(choiceRaw);
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+        return choice;
+    }
+
+    /**
      * Load high score.
      */
     public void loadHighScore() {
@@ -113,14 +128,7 @@ public class ChainGameCmd extends Game {
         System.out.println("[3] High Score");
         System.out.println("[0] Exit");
         System.out.print("> ");
-        String choiceRaw = sc.next();
-        int choice = 0;
-        try {
-            choice = Integer.parseInt(choiceRaw);
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid choice!");
-            return -1;
-        }
+        int choice = getInputInt();
         switch (choice) {
             case 0:
                 return 0;
@@ -262,14 +270,7 @@ public class ChainGameCmd extends Game {
         System.out.println("[1] Yes");
         System.out.println("[0] No");
         System.out.print("> ");
-        String choiceRaw = sc.next();
-        int choice = 0;
-        try {
-            choice = Integer.parseInt(choiceRaw);
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid choice!");
-            return false;
-        }
+        int choice = getInputInt();
         if (choice == 1) {
             System.out.println("Goodbye!");
             return true;
