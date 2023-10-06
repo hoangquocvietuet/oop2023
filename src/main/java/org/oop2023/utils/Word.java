@@ -17,7 +17,7 @@ public class Word extends DualLanguageStructure{
      */
     public Word() {
         content = "";
-        meaning = "";
+        this.meaning = new ArrayList<>();
         language = Language.UNKNOWN;
         wordClass = WordClass.NONE;
         pronunciation = "";
@@ -32,7 +32,7 @@ public class Word extends DualLanguageStructure{
      */
     public Word(String content) {
         this.content = content;
-        this.meaning = "";
+        this.meaning = new ArrayList<>();
         this.language = Language.UNKNOWN;
         this.wordClass = WordClass.NONE;
         this.pronunciation = "";
@@ -49,7 +49,8 @@ public class Word extends DualLanguageStructure{
      */
     public Word(String content, String meaning, Language language) {
         this.content = content;
-        this.meaning = meaning;
+        this.meaning = new ArrayList<>();
+        this.addMeaning(meaning);
         this.language = language;
         this.wordClass = WordClass.NONE;
         this.pronunciation = "";

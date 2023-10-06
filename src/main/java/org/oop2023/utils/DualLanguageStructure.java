@@ -2,9 +2,11 @@ package org.oop2023.utils;
 
 import org.oop2023.utils.enums.Language;
 
+import java.util.ArrayList;
+
 public abstract class DualLanguageStructure {
     protected String content;
-    protected String meaning;
+    protected ArrayList<String> meaning;
     protected Language language;
 
     /**
@@ -24,19 +26,19 @@ public abstract class DualLanguageStructure {
     }
 
     /**
-     * Set up the meaning of a dual language structure.
-     * @param meaning String
-     */
-    public void setMeaning(String meaning) {
-        this.meaning = meaning;
-    }
-
-    /**
      * Get the language of a dual language structure.
      * @return The content
      */
-    public String getMeaning() {
+    public ArrayList<String> getMeaning() {
         return meaning;
+    }
+
+    /**
+     * Add a meaning to the meaning list of a dual language structure.
+     * @param meaning String
+     */
+    public void addMeaning(String meaning) {
+        this.meaning.add(meaning);
     }
 
     /**

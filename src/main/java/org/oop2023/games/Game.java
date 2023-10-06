@@ -26,7 +26,7 @@ public abstract class Game {
      * Set up the dictionary of a game.
      * @param dict Dictionary
      */
-    void loadDictionary(Dictionary dict) {
+    public void loadDictionary(Dictionary dict) {
         this.dict = dict;
     }
 
