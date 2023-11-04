@@ -1,8 +1,8 @@
 package org.oop2023.consoleApp;
 
+import org.oop2023.database.DatabaseController;
 import org.oop2023.games.ChainGameCmd;
 import org.oop2023.utils.Dictionary;
-import org.oop2023.utils.HTMLObject;
 import org.oop2023.utils.Word;
 import org.oop2023.utils.enums.Language;
 
@@ -10,12 +10,16 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static org.oop2023.database.DatabaseHelpers.buildDictionaryCLI;
+
 public class App {
-    public static final String DICTIONARY_PATH = "resources/WordList.txt";
+//    public static final String DICTIONARY_PATH = "resources/WordList.txt";
     public static final int PAGE_SIZE = 3;
     public static final int LOOKALIKE_LIMIT = 10;
     private Dictionary dictionary;
@@ -66,28 +70,7 @@ public class App {
      */
     private void loadDictionary() {
         dictionary.setLanguage(Language.ENGLISH);
-        Connection c = null;
-        Statement stmt = null;
-
-        try {
-            Class.forName("org.sqlite.JDBC");
-            c = java.sql.DriverManager.getConnection("jdbc:sqlite:resources/db/dict.db");
-            System.out.println("Opened database successfully");
-            stmt = c.createStatement();
-            java.sql.ResultSet res = stmt.executeQuery(
-                    "SELECT word, html, description FROM av");
-            while (res.next()) {
-                String word = res.getString("word");
-                String html = res.getString("html");
-                String mean = res.getString("description");
-                dictionary.add(new Word(word, mean, Language.ENGLISH));
-//                dictionary.add(new Word(word, new HTMLObject(html), Language.ENGLISH));
-            }
-            System.out.println("Loaded dictionary successfully");
-        } catch ( Exception e ) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
-        }
+        buildDictionaryCLI(dictionary);
     }
 
     /**
@@ -95,10 +78,12 @@ public class App {
      */
     public void launch() {
         nextPage();
+        DatabaseController.start();
         loadDictionary();
         while (appLoop()) {
             //do nothing
         }
+        DatabaseController.stop();
     }
 
     /**
