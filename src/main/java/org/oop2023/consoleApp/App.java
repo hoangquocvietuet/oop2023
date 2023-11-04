@@ -2,17 +2,20 @@ package org.oop2023.consoleApp;
 
 import org.oop2023.games.ChainGameCmd;
 import org.oop2023.utils.Dictionary;
+import org.oop2023.utils.HTMLObject;
 import org.oop2023.utils.Word;
 import org.oop2023.utils.enums.Language;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
-    public static final String DICTIONARY_PATH = "resources/dict2.txt";
+    public static final String DICTIONARY_PATH = "resources/WordList.txt";
     public static final int PAGE_SIZE = 3;
     public static final int LOOKALIKE_LIMIT = 10;
     private Dictionary dictionary;
@@ -63,19 +66,27 @@ public class App {
      */
     private void loadDictionary() {
         dictionary.setLanguage(Language.ENGLISH);
-        BufferedReader reader = null;
+        Connection c = null;
+        Statement stmt = null;
+
         try {
-            reader = new BufferedReader(new java.io.FileReader(DICTIONARY_PATH));
-            String line;
-            try {
-                while ((line = reader.readLine()) != null) {
-                    dictionary.add(new Word(line, "", Language.ENGLISH));
-                }
-            } catch (java.io.IOException e) {
-                System.out.println("Error loading dictionary!");
+            Class.forName("org.sqlite.JDBC");
+            c = java.sql.DriverManager.getConnection("jdbc:sqlite:resources/db/dict.db");
+            System.out.println("Opened database successfully");
+            stmt = c.createStatement();
+            java.sql.ResultSet res = stmt.executeQuery(
+                    "SELECT word, html, description FROM av");
+            while (res.next()) {
+                String word = res.getString("word");
+                String html = res.getString("html");
+                String mean = res.getString("description");
+                dictionary.add(new Word(word, mean, Language.ENGLISH));
+//                dictionary.add(new Word(word, new HTMLObject(html), Language.ENGLISH));
             }
-        } catch (java.io.FileNotFoundException e) {
-            System.out.println("Dictionary text not found!");
+            System.out.println("Loaded dictionary successfully");
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
         }
     }
 
@@ -143,7 +154,7 @@ public class App {
         if (w == null) {
             System.out.println("This word does not exist in the dictionary!");
         } else {
-            w.debug();
+            System.out.println(w.getMeaning());
         }
         System.out.println("[1] Look up another");
         System.out.println("[0] Back");
