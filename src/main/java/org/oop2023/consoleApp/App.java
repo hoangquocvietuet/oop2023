@@ -6,25 +6,19 @@ import org.oop2023.utils.Dictionary;
 import org.oop2023.utils.Word;
 import org.oop2023.utils.enums.Language;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static org.oop2023.database.DatabaseHelpers.buildDictionaryCLI;
+import static org.oop2023.database.DatabaseMethods.buildDictionaryCLI;
 
 public class App {
 //    public static final String DICTIONARY_PATH = "resources/WordList.txt";
     public static final int PAGE_SIZE = 3;
     public static final int LOOKALIKE_LIMIT = 10;
-    private Dictionary dictionary;
-    private ChainGameCmd chainGameCmd;
-    private Scanner sc;
+    private final Dictionary dictionary;
+    private final ChainGameCmd chainGameCmd;
+    private final Scanner sc;
 
     /**
      * Constructor

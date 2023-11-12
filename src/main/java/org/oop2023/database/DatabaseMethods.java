@@ -10,11 +10,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class DatabaseHelpers {
+public class DatabaseMethods {
     /**
      * Get all words in the database.
      */
-    public static ArrayList<String> getWords() {
+    public static ArrayList<String> getWords() throws RuntimeException {
         Statement statement = DatabaseController.getStatement();
         try {
             ResultSet res = statement.executeQuery("SELECT word FROM av");
@@ -32,7 +32,7 @@ public class DatabaseHelpers {
     /**
      * Get the information of a word.
      */
-    public static ArrayList<String> getWordInfo(String word) {
+    public static ArrayList<String> getWordInfo(String word) throws RuntimeException {
         Statement statement = DatabaseController.getStatement();
         try {
             ResultSet res = statement.executeQuery("SELECT * FROM av WHERE word = '" + word + "'");
@@ -52,7 +52,7 @@ public class DatabaseHelpers {
     /**
      * Build a dictionary from the database.
      */
-    public static Dictionary buildDictionary(Dictionary dictionary) {
+    public static Dictionary buildDictionary(Dictionary dictionary) throws RuntimeException {
         Statement statement = DatabaseController.getStatement();
         try {
             ResultSet res = statement.executeQuery(
@@ -74,7 +74,7 @@ public class DatabaseHelpers {
     /**
      * Build a dictionary from the database (CLI version).
      */
-    public static Dictionary buildDictionaryCLI(Dictionary dictionary) {
+    public static Dictionary buildDictionaryCLI(Dictionary dictionary) throws RuntimeException {
         Statement statement = DatabaseController.getStatement();
         try {
             ResultSet res = statement.executeQuery(
