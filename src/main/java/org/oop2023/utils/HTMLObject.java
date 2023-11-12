@@ -177,7 +177,7 @@ public class HTMLObject {
      * @param args The command-line arguments
      */
     public static void main(String[] args) {
-        HTMLObject htmlObject = new HTMLObject("<h1>r&d</h1><h3><i>//</i></h3>* danh từ<br/><ul><li><vt của research and development) nghiên cứu và phát triển</li></ul>");
+        HTMLObject htmlObject = new HTMLObject("<h1>slay</h1><h3><i>/slei/</i></h3><h2>ngoại động từ slew; slain</h2><ul><li>(thơ ca); (văn học);(đùa cợt) giết</li></ul>");
         System.out.println(htmlObject.toString());
     }
 }
