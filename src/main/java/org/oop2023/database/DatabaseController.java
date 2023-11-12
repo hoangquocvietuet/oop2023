@@ -11,7 +11,7 @@ public class DatabaseController {
     /**
      * Establish a connection to the database.
      */
-    public static void start() {
+    public static void start() throws RuntimeException {
         System.out.println("Establishing connection to SQLite...");
         try {
             Class.forName("org.sqlite.JDBC");
@@ -20,19 +20,21 @@ public class DatabaseController {
             System.out.println("Connection to SQLite has been established.");
         } catch (Exception e) {
             e.printStackTrace();
+            throw new RuntimeException("Failed to establish connection to SQLite.");
         }
     }
 
     /**
      * Close the connection to the database.
      */
-    public static void stop() {
+    public static void stop() throws RuntimeException {
         try {
             statement.close();
             connection.close();
             System.out.println("Connection to SQLite has been closed.");
         } catch (Exception e) {
             e.printStackTrace();
+            throw new RuntimeException("Failed to close connection to SQLite.");
         }
     }
 
