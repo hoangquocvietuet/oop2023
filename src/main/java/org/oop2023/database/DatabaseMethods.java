@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class DatabaseHelpers {
+public class DatabaseMethods {
     /**
      * Get all words in the database.
      */
