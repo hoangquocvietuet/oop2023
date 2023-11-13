@@ -1,5 +1,5 @@
 //Translator.java
-package org.oop2023.translateAPI;
+package org.oop2023.services.translateAPI;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,7 +17,7 @@ import java.net.http.HttpResponse;
 
 public class Translator {
     private static final String API_URI = "https://microsoft-translator-text.p.rapidapi.com/translate";
-    private static final String CONFIG_FILE_PATH = "resources/config/translate_api_config.json";
+    private static final String CONFIG_FILE_PATH = "src/main/resources/org/oop2023/config/translate_api_config.json";
     String APIKey;
 
     /**

@@ -1,4 +1,4 @@
-package org.oop2023.database;
+package org.oop2023.services.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +15,7 @@ public class DatabaseController {
         System.out.println("Establishing connection to SQLite...");
         try {
             Class.forName("org.sqlite.JDBC");
-            connection = DriverManager.getConnection("jdbc:sqlite:resources/db/dict.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:src/main/resources/org/oop2023/db/dict.db");
             statement = connection.createStatement();
             System.out.println("Connection to SQLite has been established.");
         } catch (Exception e) {

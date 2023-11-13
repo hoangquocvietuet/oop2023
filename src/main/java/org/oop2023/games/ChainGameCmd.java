@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ChainGameCmd extends Game {
-    private static final String HIGH_SCORE_PATH = "resources/games/chain_game_cmd/high_score.txt";
-    public static final String INSTRUCTION_PATH = "resources/games/chain_game_cmd/instruction.txt";
+    private static final String HIGH_SCORE_PATH = "src/main/resources/org/oop2023/games_resources/chain_game_cmd/high_score.txt";
+    public static final String INSTRUCTION_PATH = "src/main/resources/org/oop2023/games_resources/chain_game_cmd/instruction.txt";
     public static final int PAGE_SIZE = 3;
     private static final int MAX_TRIALS_COUNT = 5000000;
     private static final int VICTORY_SCORE = 1000000;
