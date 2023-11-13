@@ -26,4 +26,8 @@ public class SceneController {
     public void setDictionaryScene(Stage stage) throws Exception {
         setScene(stage, FXML.DICTIONARY);
     }
+
+    public void setTranslateScene(Stage stage) throws Exception {
+        setScene(stage, FXML.TRANSLATE);
+    }
 }

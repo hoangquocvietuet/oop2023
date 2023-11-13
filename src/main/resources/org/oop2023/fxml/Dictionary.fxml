@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,7 +11,7 @@
    <children>
       <ImageView fitHeight="720.0" fitWidth="1080.0">
          <image>
-            <Image url="@../images/Dictionary/background.png" />
+            <Image url="@../images/Dictionary/background-5.png" />
          </image>
       </ImageView>
       <ImageView fx:id="home" fitHeight="60.0" fitWidth="60.0" layoutX="20.0" layoutY="20.0" onMouseClicked="#homeOnMouseClicked" styleClass="custom-icon">
@@ -19,11 +20,15 @@
          </image>
       </ImageView>
       <TextField fx:id="searchField" layoutX="346.0" layoutY="207.0" onKeyPressed="#searchFieldOnKeyPressed" prefHeight="30.0" prefWidth="410.0" styleClass="search-box" />
-      <ListView layoutX="342.0" layoutY="288.0" prefHeight="200.0" prefWidth="400.0" />
-      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="719.0" layoutY="210.0" onMouseClicked="#searchButtonOnMouseClicked" styleClass="search-button">
-         <image>
-            <Image url="@../images/Dictionary/search.png" />
-         </image>
-      </ImageView>
+      <TextArea fx:id="resultField" editable="false" layoutX="346.0" layoutY="286.0" prefHeight="200.0" prefWidth="400.0" styleClass="result" />
+      <Button layoutX="708.0" layoutY="207.0" mnemonicParsing="false" onMouseClicked="#searchButtonOnMouseClicked">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" styleClass="search-button">
+               <image>
+                  <Image url="@../images/Dictionary/search.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </Pane>

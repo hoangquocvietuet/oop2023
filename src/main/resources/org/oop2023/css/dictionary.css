@@ -32,3 +32,11 @@
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
 }
+
+.result {
+    -fx-background-radius: 5; 
+    /* -fx-background-color: #E0FFE0;  */
+    /* -fx-padding: 5;  */
+    -fx-fill: #008000; 
+    -fx-font-weight: bold;
+}
