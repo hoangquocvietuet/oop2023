@@ -1,4 +1,4 @@
-package org.oop2023.database;
+package org.oop2023.services.database;
 
 import org.oop2023.utils.Dictionary;
 import org.oop2023.utils.HTMLObject;

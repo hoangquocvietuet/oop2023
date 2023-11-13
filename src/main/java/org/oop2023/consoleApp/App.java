@@ -1,6 +1,6 @@
 package org.oop2023.consoleApp;
 
-import org.oop2023.database.DatabaseController;
+import org.oop2023.services.database.DatabaseController;
 import org.oop2023.games.ChainGameCmd;
 import org.oop2023.utils.Dictionary;
 import org.oop2023.utils.Word;
@@ -10,7 +10,7 @@ import java.io.BufferedWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static org.oop2023.database.DatabaseMethods.buildDictionaryCLI;
+import static org.oop2023.services.database.DatabaseMethods.buildDictionaryCLI;
 
 public class App {
 //    public static final String DICTIONARY_PATH = "resources/WordList.txt";
