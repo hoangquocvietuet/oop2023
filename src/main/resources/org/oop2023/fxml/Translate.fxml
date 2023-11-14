@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../css/translate.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.oop2023.controller.TranslateController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1080.0">
+         <image>
+            <Image url="@../images/Translate/background.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="Home" fitHeight="60.0" fitWidth="60.0" layoutX="20.0" layoutY="20.0" onMouseClicked="#homeOnMouseClicked" styleClass="custom-icon">
+         <image>
+            <Image url="@../images/Translate/house.png" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="textField1" layoutX="260.0" layoutY="220.0" onKeyPressed="#textField1OnKeyPressed" prefHeight="200.0" prefWidth="250.0" />
+      <TextArea fx:id="textField2" layoutX="580.0" layoutY="220.0" prefHeight="200.0" prefWidth="250.0" />
+      <Button fx:id="swapButton" layoutX="523.0" layoutY="298.0" mnemonicParsing="false" onMouseClicked="#swapButtonOnMouseClicked">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0">
+               <image>
+                  <Image url="@../images/Translate/swap.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="speaker2" layoutX="780.0" layoutY="420.0" mnemonicParsing="false" onMouseClicked="#speaker2OnMouseClicked">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0">
+               <image>
+                  <Image url="@../images/Translate/speaker.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="speaker1" layoutX="462.0" layoutY="420.0" mnemonicParsing="false" onMouseClicked="#speaker1OnMouseClicked">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0">
+               <image>
+                  <Image url="@../images/Translate/speaker.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="micro2" layoutX="733.0" layoutY="420.0" mnemonicParsing="false" onMouseClicked="#micro2OnMouseClicked">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0">
+               <image>
+                  <Image url="@../images/Translate/microphone.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="micro1" layoutX="415.0" layoutY="420.0" mnemonicParsing="false" onMouseClicked="#micro1OnMouseClicked">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0">
+               <image>
+                  <Image url="@../images/Translate/microphone.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</Pane>

@@ -11,17 +11,17 @@
             <Image url="@../images/Home/empty-background.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="741.0" layoutY="193.0" onMouseClicked="#dictionaryOnMouseClicked" styleClass="custom-icon">
+      <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="747.0" layoutY="127.0" onMouseClicked="#dictionaryOnMouseClicked" styleClass="custom-icon">
          <image>
             <Image url="@../images/Home/dictionary.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="870.0" layoutY="237.0" styleClass="custom-icon">
+      <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="885.0" layoutY="190.0" styleClass="custom-icon">
          <image>
             <Image url="@../images/Home/game.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="624.0" layoutY="234.0" styleClass="custom-icon">
+      <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="622.0" layoutY="188.0" styleClass="custom-icon">
          <image>
             <Image url="@../images/Home/study.png" />
          </image>
@@ -29,6 +29,11 @@
       <ImageView fx:id="earthImageView" fitHeight="500.0" fitWidth="500.0" layoutX="39.0" layoutY="86.0" styleClass="earth">
          <image>
             <Image url="@../images/Home/earth.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="750.0" layoutY="264.0" onMouseClicked="#translateOnMouseClicked" styleClass="custom-icon">
+         <image>
+            <Image url="@../images/Home/translate.png" />
          </image>
       </ImageView>
    </children>
