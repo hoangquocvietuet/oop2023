@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -19,11 +21,20 @@
             <Image url="@../images/Dictionary/house.png" />
          </image>
       </ImageView>
-      <TextField fx:id="searchField" layoutX="346.0" layoutY="207.0" onKeyPressed="#searchFieldOnKeyPressed" prefHeight="30.0" prefWidth="410.0" styleClass="search-box" />
-      <TextArea fx:id="resultField" editable="false" layoutX="346.0" layoutY="286.0" prefHeight="200.0" prefWidth="400.0" styleClass="result" />
-      <Button layoutX="708.0" layoutY="207.0" mnemonicParsing="false" onMouseClicked="#searchButtonOnMouseClicked">
+      <TextField fx:id="searchField" layoutX="346.0" layoutY="207.0" onKeyPressed="#searchFieldOnKeyPressed" prefHeight="30.0" prefWidth="410.0">
+         <styleClass>
+            <String fx:value="search-box" />
+            <String fx:value="rounded-corner" />
+         </styleClass></TextField>
+      <TextArea fx:id="resultField" editable="false" layoutX="346.0" layoutY="286.0" prefHeight="200.0" prefWidth="400.0">
+         <styleClass>
+            <String fx:value="result" />
+            <String fx:value="rounded-corner" />
+         </styleClass></TextArea>
+      <ListView fx:id="suggestionListView" layoutX="346.0" layoutY="236.0" prefHeight="249.0" prefWidth="400.0" styleClass="rounded-corner" />
+      <Button layoutX="709.0" layoutY="207.0" mnemonicParsing="false" onMouseClicked="#searchButtonOnMouseClicked">
          <graphic>
-            <ImageView fitHeight="20.0" fitWidth="20.0" styleClass="search-button">
+            <ImageView fitHeight="21.0" fitWidth="20.0" styleClass="search-button">
                <image>
                   <Image url="@../images/Dictionary/search.png" />
                </image>

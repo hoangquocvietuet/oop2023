@@ -1,4 +1,9 @@
 package org.oop2023.controller;
+
+import org.oop2023.utils.Dictionary;
+
+import java.util.ArrayList;
+
 import org.oop2023.FXML;
 
 import javafx.fxml.FXMLLoader;
@@ -8,6 +13,16 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 
 public class SceneController {
+
+    private final Dictionary dictionary;
+
+    SceneController() {
+        dictionary = new Dictionary();
+    }
+
+    public ArrayList<String> getAlikeWord(String word) {
+        return dictionary.getAlike(word, 10);
+    }
 
     public void setScene(Stage stage, String fxmlPath) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
