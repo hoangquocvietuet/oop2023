@@ -1,8 +1,11 @@
 package org.oop2023.controller;
 
+import java.util.ArrayList;
+
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -22,10 +25,15 @@ public class DictionaryController extends SceneController {
     private TextArea resultField; 
 
     @FXML
+    private ListView<String> suggestionListView;
+
+    @FXML
     public void initialize() {
         searchField.setPromptText("Enter a word to search.");
         resultField.setPromptText("Result will be shown here.");
         setResult("Hello world!");
+        suggestionListView.setVisible(false);
+        resultField.setVisible(false);
     };
 
     @FXML
@@ -48,6 +56,22 @@ public class DictionaryController extends SceneController {
     void searchFieldOnKeyPressed(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
             search();
+            suggestionListView.setVisible(false);
+            resultField.setVisible(true);
+        } else {
+            String word = searchField.getText();
+            ArrayList<String> suggestions = super.getAlikeWord(word);
+            if(word.length() == 0 || suggestions.size() == 0) {
+                suggestionListView.setVisible(false);
+                resultField.setVisible(false);
+                return;
+            }
+
+            suggestionListView.getItems().clear();
+            suggestionListView.setPrefHeight(suggestions.size() * 24);
+            suggestionListView.getItems().addAll(suggestions);
+            suggestionListView.setVisible(true);
+            resultField.setVisible(false);
         }
     }
 
@@ -55,6 +79,8 @@ public class DictionaryController extends SceneController {
     void searchButtonOnMouseClicked(MouseEvent event) {
         if(event.getClickCount() == 1) {
             search();
+            suggestionListView.setVisible(false);
+            resultField.setVisible(true);
         }
     }
 
