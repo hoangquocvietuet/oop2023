@@ -181,8 +181,8 @@ public class Trie<E> {
      */
     private ArrayList<String> getChildKeys(TrieNode<E> current, String key, String sampleKey,
                                            int index, int maxSize) {
-        ArrayList<String> keys = new ArrayList<String>();
-        if (current.getValue() != null) {
+        ArrayList<String> keys = new ArrayList<>();
+        if (current.getValue() != null && key.length() >= sampleKey.length()) {
             keys.add(key);
         }
         for (int i = 0; i < current.getChildren().length; i++) {
