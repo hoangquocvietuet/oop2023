@@ -52,6 +52,7 @@ public class DictionaryController extends SceneController {
                 suggestionListView.setPrefHeight(suggestions.size() * 24);
                 suggestionListView.getItems().addAll(suggestions);
                 suggestionListView.setVisible(true);
+                suggestionListView.getSelectionModel().selectFirst();
                 resultField.setVisible(false);
             }
         });
@@ -82,6 +83,14 @@ public class DictionaryController extends SceneController {
             suggestionListView.setVisible(false);
             resultField.setVisible(true);
         }
+        if (event.getCode() == KeyCode.DOWN) {
+            suggestionListView.requestFocus();
+            suggestionListView.getSelectionModel().selectNext();
+        }
+        if (event.getCode() == KeyCode.UP) {
+            suggestionListView.requestFocus();
+            suggestionListView.getSelectionModel().selectPrevious();
+        }
     }
 
     @FXML
@@ -96,5 +105,30 @@ public class DictionaryController extends SceneController {
     @FXML
     void setResult(String text) {
         resultField.setText(text);
+    }
+
+    @FXML
+    void suggestionListViewOnMouseClicked(MouseEvent event) {
+        System.out.println("Suggestion clicked");
+        if(event.getClickCount() == 1) {
+            String text = suggestionListView.getSelectionModel().getSelectedItem();
+            System.out.println(text);
+            searchField.setText(text);
+            search();
+            suggestionListView.setVisible(false);
+            resultField.setVisible(true);
+        }
+    }
+
+    @FXML
+    void suggestionListViewOnKeyPressed(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            String text = suggestionListView.getSelectionModel().getSelectedItem();
+            System.out.println(text);
+            searchField.setText(text);
+            search();
+            suggestionListView.setVisible(false);
+            resultField.setVisible(true);
+        }
     }
 }

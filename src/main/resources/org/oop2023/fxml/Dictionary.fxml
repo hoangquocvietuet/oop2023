@@ -31,7 +31,7 @@
             <String fx:value="result" />
             <String fx:value="rounded-corner" />
          </styleClass></TextArea>
-      <ListView fx:id="suggestionListView" layoutX="346.0" layoutY="236.0" prefHeight="249.0" prefWidth="400.0" styleClass="rounded-corner" />
+      <ListView fx:id="suggestionListView" layoutX="346.0" layoutY="236.0" prefHeight="249.0" prefWidth="400.0" styleClass="rounded-corner" onMouseClicked="#suggestionListViewOnMouseClicked" onKeyPressed="#suggestionListViewOnKeyPressed" />
       <Button layoutX="709.0" layoutY="207.0" mnemonicParsing="false" onMouseClicked="#searchButtonOnMouseClicked">
          <graphic>
             <ImageView fitHeight="21.0" fitWidth="20.0" styleClass="search-button">
