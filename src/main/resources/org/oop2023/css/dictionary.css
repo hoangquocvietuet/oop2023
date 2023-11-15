@@ -1,0 +1,50 @@
+.custom-icon {
+    -fx-effect: dropshadow(three-pass-box, #3498db, 10, 0, 0, 0);
+    -fx-transition: all 0.2s;
+}
+
+.custom-icon:hover {
+    -fx-effect: dropshadow(three-pass-box, #ffcc00, 10, 0, 0, 0);
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.search-box {
+    -fx-padding: 5;
+    -fx-spacing: 5;
+}
+
+.text-field {
+    -fx-pref-width: 400;
+    -fx-font-size: 14;
+}
+
+.search-button {
+    -fx-font-size: 14;
+}
+
+.search-button {
+    -fx-transition: all 0.2s;
+}
+
+.search-button:hover {
+    -fx-effect: dropshadow(three-pass-box, #3498db, 10, 0, 0, 0);
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.result {
+    -fx-background-radius: 5; 
+    /* -fx-background-color: #E0FFE0;  */
+    /* -fx-padding: 5;  */
+    -fx-fill: #008000; 
+    -fx-font-weight: bold;
+}
+
+.rounded-corner {
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-border-color: #000000; 
+    -fx-border-width: 1; 
+    -fx-background-color: #ffffff;
+}

@@ -1,0 +1,26 @@
+.custom-icon {
+    -fx-effect: dropshadow(three-pass-box, #3498db, 10, 0, 0, 0);
+    -fx-transition: all 0.2s;
+}
+
+.custom-icon:hover {
+    -fx-effect: dropshadow(three-pass-box, #ffcc00, 10, 0, 0, 0);
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+@keyframes rotateClockwise {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+.earth {
+    animation: rotateClockwise 2s linear infinite;
+}

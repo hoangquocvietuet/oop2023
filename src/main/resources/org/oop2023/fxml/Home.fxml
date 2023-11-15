@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../css/homeStyleSheet.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.oop2023.controller.HomeController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1080.0">
+         <image>
+            <Image url="@../images/Home/empty-background.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="747.0" layoutY="127.0" onMouseClicked="#dictionaryOnMouseClicked" styleClass="custom-icon">
+         <image>
+            <Image url="@../images/Home/dictionary.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="885.0" layoutY="190.0" styleClass="custom-icon">
+         <image>
+            <Image url="@../images/Home/game.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="622.0" layoutY="188.0" styleClass="custom-icon">
+         <image>
+            <Image url="@../images/Home/study.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="earthImageView" fitHeight="500.0" fitWidth="500.0" layoutX="39.0" layoutY="86.0" styleClass="earth">
+         <image>
+            <Image url="@../images/Home/earth.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="750.0" layoutY="264.0" onMouseClicked="#translateOnMouseClicked" styleClass="custom-icon">
+         <image>
+            <Image url="@../images/Home/translate.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

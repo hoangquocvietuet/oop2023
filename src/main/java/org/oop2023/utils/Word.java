@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Word extends DualLanguageStructure{
     private WordClass wordClass;
     private String pronunciation;
+    private String description;
     private ArrayList<String> antonyms;
     private ArrayList<String> synonyms;
     private ArrayList<Sentence> sentences;
@@ -17,13 +18,14 @@ public class Word extends DualLanguageStructure{
      */
     public Word() {
         content = "";
-        meaning = "";
+        this.meaning = new ArrayList<>();
         language = Language.UNKNOWN;
         wordClass = WordClass.NONE;
         pronunciation = "";
         antonyms = new ArrayList<>();
         synonyms = new ArrayList<>();
         sentences = new ArrayList<>();
+        description = "";
     }
 
     /**
@@ -32,13 +34,14 @@ public class Word extends DualLanguageStructure{
      */
     public Word(String content) {
         this.content = content;
-        this.meaning = "";
+        this.meaning = new ArrayList<>();
         this.language = Language.UNKNOWN;
         this.wordClass = WordClass.NONE;
         this.pronunciation = "";
         this.antonyms = new ArrayList<>();
         this.synonyms = new ArrayList<>();
         this.sentences = new ArrayList<>();
+        this.description = "";
     }
 
     /**
@@ -49,13 +52,27 @@ public class Word extends DualLanguageStructure{
      */
     public Word(String content, String meaning, Language language) {
         this.content = content;
-        this.meaning = meaning;
+        this.meaning = new ArrayList<>();
+        this.addMeaning(meaning);
         this.language = language;
         this.wordClass = WordClass.NONE;
         this.pronunciation = "";
         this.antonyms = new ArrayList<>();
         this.synonyms = new ArrayList<>();
         this.sentences = new ArrayList<>();
+        this.description = "";
+    }
+
+    public Word(String content, HTMLObject description, Language language) {
+        this.content = content;
+        this.meaning = new ArrayList<>();
+        this.language = language;
+        this.wordClass = WordClass.NONE;
+        this.pronunciation = "";
+        this.antonyms = new ArrayList<>();
+        this.synonyms = new ArrayList<>();
+        this.sentences = new ArrayList<>();
+        this.description = description.toString();
     }
 
     /**
@@ -139,6 +156,22 @@ public class Word extends DualLanguageStructure{
     }
 
     /**
+     * Get the description of the word.
+     * @return A string.
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Set the description of the word.
+     * @param description A string.
+     */
+    public void setDescription(HTMLObject description) {
+        this.description = description.toString();
+    }
+
+    /**
      * Check if a word is valid (not null, no invalid characters).
      * @param word The word to be checked
      * @return true if the word is valid, false otherwise
@@ -167,5 +200,6 @@ public class Word extends DualLanguageStructure{
         System.out.println("Antonyms: " + antonyms);
         System.out.println("Synonyms: " + synonyms);
         System.out.println("Sentences: " + sentences);
+        System.out.println("Description:\n" + description);
     }
 }

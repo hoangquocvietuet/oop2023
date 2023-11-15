@@ -1,0 +1,15 @@
+.laptop {
+    -fx-effect: dropshadow(three-pass-box, #3498db, 10, 0, 0, 0);
+    -fx-transition: all 0.2s;
+}
+
+.laptop:hover {
+    -fx-effect: dropshadow(three-pass-box, #ffcc00, 10, 0, 0, 0);
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.table {
+    -fx-effect: dropshadow(three-pass-box, #3498db, 10, 0, 0, 0);
+    -fx-transition: all 0.2s;
+}
