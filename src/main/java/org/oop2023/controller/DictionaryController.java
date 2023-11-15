@@ -71,6 +71,10 @@ public class DictionaryController extends SceneController {
 
     void search() {
         String text = searchField.getText();
+        if (Utils.dictionary.getDetails(text) == null) {
+            setResult("Word not found. Please check your typing.");
+            return;
+        }
         String description = Utils.dictionary.getDetails(text).getDescription();
         setResult(description);
         // System.out.println(text);
@@ -83,13 +87,8 @@ public class DictionaryController extends SceneController {
             suggestionListView.setVisible(false);
             resultField.setVisible(true);
         }
-        if (event.getCode() == KeyCode.DOWN) {
+        if (event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.UP) {
             suggestionListView.requestFocus();
-            suggestionListView.getSelectionModel().selectNext();
-        }
-        if (event.getCode() == KeyCode.UP) {
-            suggestionListView.requestFocus();
-            suggestionListView.getSelectionModel().selectPrevious();
         }
     }
 

@@ -10,9 +10,10 @@ public class Utils {
     public static final Dictionary dictionary = new Dictionary();
 
 
-    static {
+    static void initialize() {
         DatabaseController.start();
         dictionary.setLanguage(Language.ENGLISH);
+        System.out.println("Building dictionary...");
         buildDictionaryCLI(dictionary);
     }
 }

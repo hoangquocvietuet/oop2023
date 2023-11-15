@@ -1,7 +1,5 @@
 package org.oop2023;
 
-import static org.oop2023.services.database.DatabaseMethods.buildDictionaryCLI;
-
 import java.io.IOException;
 
 import org.oop2023.services.database.DatabaseController;
@@ -34,6 +32,8 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+        Utils.initialize();
+
         launch(args);
     }
 }
