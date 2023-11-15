@@ -2,6 +2,8 @@ package org.oop2023.controller;
 
 import java.util.ArrayList;
 
+import org.oop2023.Utils;
+
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -34,6 +36,25 @@ public class DictionaryController extends SceneController {
         setResult("Hello world!");
         suggestionListView.setVisible(false);
         resultField.setVisible(false);
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.length() == 0) {
+                suggestionListView.setVisible(false);
+                resultField.setVisible(false);
+            } else {
+                ArrayList<String> suggestions = Utils.dictionary.getAlike(newValue, 10);
+                if(suggestions.size() == 0) {
+                    suggestionListView.setVisible(false);
+                    resultField.setVisible(false);
+                    return;
+                }
+
+                suggestionListView.getItems().clear();
+                suggestionListView.setPrefHeight(suggestions.size() * 24);
+                suggestionListView.getItems().addAll(suggestions);
+                suggestionListView.setVisible(true);
+                resultField.setVisible(false);
+            }
+        });
     };
 
     @FXML
@@ -49,7 +70,9 @@ public class DictionaryController extends SceneController {
 
     void search() {
         String text = searchField.getText();
-        System.out.println(text);
+        String description = Utils.dictionary.getDetails(text).getDescription();
+        setResult(description);
+        // System.out.println(text);
     }
 
     @FXML
@@ -58,20 +81,6 @@ public class DictionaryController extends SceneController {
             search();
             suggestionListView.setVisible(false);
             resultField.setVisible(true);
-        } else {
-            String word = searchField.getText();
-            ArrayList<String> suggestions = super.getAlikeWord(word);
-            if(word.length() == 0 || suggestions.size() == 0) {
-                suggestionListView.setVisible(false);
-                resultField.setVisible(false);
-                return;
-            }
-
-            suggestionListView.getItems().clear();
-            suggestionListView.setPrefHeight(suggestions.size() * 24);
-            suggestionListView.getItems().addAll(suggestions);
-            suggestionListView.setVisible(true);
-            resultField.setVisible(false);
         }
     }
 

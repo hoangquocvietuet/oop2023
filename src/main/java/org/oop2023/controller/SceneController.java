@@ -13,17 +13,6 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 
 public class SceneController {
-
-    private final Dictionary dictionary;
-
-    SceneController() {
-        dictionary = new Dictionary();
-    }
-
-    public ArrayList<String> getAlikeWord(String word) {
-        return dictionary.getAlike(word, 10);
-    }
-
     public void setScene(Stage stage, String fxmlPath) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
         stage.setScene(new Scene(fxmlLoader.load()));

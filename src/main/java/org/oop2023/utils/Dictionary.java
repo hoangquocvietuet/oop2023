@@ -143,7 +143,8 @@ public class Dictionary {
      */
     public static void main(String[] args) {
         Dictionary dict = new Dictionary(Language.ENGLISH);
-        dict.add(new Word("hello?", "xin chào?", Language.ENGLISH));
-        System.out.println(dict.getWordsList());
+        dict.add(new Word("hello", "xin chào?", Language.ENGLISH));
+        dict.add(new Word("helloworld", "thế giới", Language.ENGLISH));
+        dict.add(new Word("helloworldd", "thế giới", Language.ENGLISH));
     }
 }

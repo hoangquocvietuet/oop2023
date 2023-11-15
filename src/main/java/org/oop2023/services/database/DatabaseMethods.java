@@ -83,8 +83,8 @@ public class DatabaseMethods {
                 String word = res.getString("word");
                 String html = res.getString("html");
                 String mean = res.getString("description");
-                dictionary.add(new Word(word, mean, Language.ENGLISH));
-//                dictionary.add(new Word(word, new HTMLObject(html), Language.ENGLISH));
+                // dictionary.add(new Word(word, mean, Language.ENGLISH));
+               dictionary.add(new Word(word, new HTMLObject(html), Language.ENGLISH));
             }
             System.out.println("Words has been added to the dictionary.");
             return dictionary;
