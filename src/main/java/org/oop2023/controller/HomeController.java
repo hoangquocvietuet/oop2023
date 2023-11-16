@@ -53,12 +53,24 @@ public class HomeController extends SceneController {
         }
     }
 
-    @FXML 
+    @FXML
     void translateOnMouseClicked(MouseEvent event) {
         System.out.println("Translate clicked");
         try {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             super.setTranslateScene(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e);
+        }
+    }
+
+    @FXML
+    void practiceOnMouseClicked(MouseEvent event) {
+        System.out.println("Practice clicked");
+        try {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            super.setPracticeScene(stage);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e);

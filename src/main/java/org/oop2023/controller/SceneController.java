@@ -45,4 +45,8 @@ public class SceneController {
     public void setTranslateScene(Stage stage) throws Exception {
         setScene(stage, FXML.TRANSLATE);
     }
+
+    public void setPracticeScene(Stage stage) throws Exception {
+        setScene(stage, FXML.PRACTICE);
+    }
 }
