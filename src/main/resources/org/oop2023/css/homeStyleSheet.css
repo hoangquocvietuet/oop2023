@@ -1,6 +1,7 @@
 .custom-icon {
     -fx-effect: dropshadow(three-pass-box, #3498db, 10, 0, 0, 0);
     -fx-transition: all 0.2s;
+    -fx-cursor: hand;
 }
 
 .custom-icon:hover {

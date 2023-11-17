@@ -9,6 +9,7 @@
 .custom-icon {
     -fx-effect: dropshadow(three-pass-box, #3498db, 10, 0, 0, 0);
     -fx-transition: all 0.2s;
+    -fx-cursor: hand;
 }
 
 .custom-icon:hover {
@@ -25,8 +26,7 @@
     -fx-background-color: #ffffff;
 }
 
-.image-button {
-    -fx-background-image: url('../images/Practice/next.png');
+.next-button, .check-button {
     -fx-background-size: cover;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
@@ -37,10 +37,27 @@
     -fx-cursor: hand;
 }
 
-.image-button:hover {
+.start-button {
+    -fx-cursor: hand;
+}
+
+.next-button:hover, .check-button:hover, .start-button:hover {
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0);
 }
 
+.next-button {
+    -fx-background-image: url('../images/Practice/next.png');
+}
+
+.check-button {
+    -fx-background-image: url('../images/Practice/check.png');
+}
+
+
 .answer-field {
     -fx-padding: 0 0 0 45px;
+}
+
+.time-label {
+    -fx-text-fill: #008000;
 }

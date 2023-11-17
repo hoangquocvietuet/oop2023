@@ -6,4 +6,5 @@ public @interface FXML {
     public String DICTIONARY = "/org/oop2023/fxml/Dictionary.fxml";
     public String TRANSLATE = "/org/oop2023/fxml/Translate.fxml";
     public String PRACTICE = "/org/oop2023/fxml/Practice.fxml";
+    public String PRACTICE_RESULT = "/org/oop2023/fxml/Result.fxml";
 }

@@ -82,9 +82,9 @@ public class TranslateController extends SceneController {
         textField2.setText(text);
     }
 
-    @FXML 
+    @FXML
     void textField1OnKeyPressed(KeyEvent event) {
-        if(event.getCode() == KeyCode.ENTER) {
+        if (event.getCode() == KeyCode.ENTER) {
             String text = textField1.getText();
             translate(text);
         }
