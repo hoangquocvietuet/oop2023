@@ -1,6 +1,11 @@
 package org.oop2023;
 
 import java.io.IOException;
+
+import org.oop2023.services.database.DatabaseController;
+import org.oop2023.utils.Dictionary;
+import org.oop2023.utils.enums.Language;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,6 +32,8 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+        Utils.initialize();
+
         launch(args);
     }
 }

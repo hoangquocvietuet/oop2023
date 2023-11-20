@@ -2,6 +2,8 @@ package org.oop2023.controller;
 
 import java.util.ArrayList;
 
+import org.oop2023.Utils;
+
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -42,8 +44,27 @@ public class DictionaryController extends SceneController {
 
         suggestionListView.setVisible(false);
         resultField.setVisible(false);
-
         microButton.setVisible(false);
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.length() == 0) {
+                suggestionListView.setVisible(false);
+                resultField.setVisible(false);
+            } else {
+                ArrayList<String> suggestions = Utils.dictionary.getAlike(newValue, 10);
+                if(suggestions.size() == 0) {
+                    suggestionListView.setVisible(false);
+                    resultField.setVisible(false);
+                    return;
+                }
+
+                suggestionListView.getItems().clear();
+                suggestionListView.setPrefHeight(suggestions.size() * 24);
+                suggestionListView.getItems().addAll(suggestions);
+                suggestionListView.setVisible(true);
+                suggestionListView.getSelectionModel().selectFirst();
+                resultField.setVisible(false);
+            }
+        });
     };
 
     /**
@@ -66,7 +87,13 @@ public class DictionaryController extends SceneController {
     void search() {
         microButton.setVisible(true);
         String text = searchField.getText();
-        System.out.println(text);
+        if (Utils.dictionary.getDetails(text) == null) {
+            setResult("Word not found. Please check your typing.");
+            return;
+        }
+        String description = Utils.dictionary.getDetails(text).getDescription();
+        setResult(description);
+        // System.out.println(text);
     }
 
     /**
@@ -95,6 +122,9 @@ public class DictionaryController extends SceneController {
             suggestionListView.getItems().addAll(suggestions);
             suggestionListView.setVisible(true);
             resultField.setVisible(false);
+        }
+        if (event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.UP) {
+            suggestionListView.requestFocus();
         }
     }
 
@@ -132,4 +162,28 @@ public class DictionaryController extends SceneController {
 
     }
 
+    @FXML
+    void suggestionListViewOnMouseClicked(MouseEvent event) {
+        System.out.println("Suggestion clicked");
+        if(event.getClickCount() == 1) {
+            String text = suggestionListView.getSelectionModel().getSelectedItem();
+            System.out.println(text);
+            searchField.setText(text);
+            search();
+            suggestionListView.setVisible(false);
+            resultField.setVisible(true);
+        }
+    }
+
+    @FXML
+    void suggestionListViewOnKeyPressed(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            String text = suggestionListView.getSelectionModel().getSelectedItem();
+            System.out.println(text);
+            searchField.setText(text);
+            search();
+            suggestionListView.setVisible(false);
+            resultField.setVisible(true);
+        }
+    }
 }
