@@ -119,7 +119,7 @@ public class TranslateController extends SceneController {
         new Thread(apiCallTask).start();
     }   
 
-    @FXML 
+    @FXML
     void textField1OnKeyPressed(KeyEvent event) {
         if(event.getCode() == KeyCode.ENTER) {
             translate();

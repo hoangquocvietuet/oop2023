@@ -1,3 +1,11 @@
+.question-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-padding: 10;
+    background-color: #8cee83;
+}
+
 .custom-icon {
     -fx-effect: dropshadow(three-pass-box, #3498db, 10, 0, 0, 0);
     -fx-transition: all 0.2s;
@@ -18,16 +26,38 @@
     -fx-background-color: #ffffff;
 }
 
-.micro1, .micro2, .speaker1, .speaker2, .swap {
+.next-button, .check-button {
     -fx-background-size: cover;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-padding: 0;
-    -fx-min-width: 47; 
-    -fx-min-height: 39;
+    -fx-min-width: 50; 
+    -fx-min-height: 50;
+    -fx-background-radius: 50;
     -fx-cursor: hand;
 }
 
-.image-button:hover {
+.start-button {
+    -fx-cursor: hand;
+}
+
+.next-button:hover, .check-button:hover, .start-button:hover {
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0);
+}
+
+.next-button {
+    -fx-background-image: url('../images/Practice/next.png');
+}
+
+.check-button {
+    -fx-background-image: url('../images/Practice/check.png');
+}
+
+
+.answer-field {
+    -fx-padding: 0 0 0 45px;
+}
+
+.time-label {
+    -fx-text-fill: #008000;
 }

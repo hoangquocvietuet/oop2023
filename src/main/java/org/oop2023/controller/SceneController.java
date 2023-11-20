@@ -8,9 +8,7 @@ import org.oop2023.FXML;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.scene.Node;
 
 public class SceneController {
     public void setScene(Stage stage, String fxmlPath) throws Exception {
@@ -33,5 +31,14 @@ public class SceneController {
 
     public void setTranslateScene(Stage stage) throws Exception {
         setScene(stage, FXML.TRANSLATE);
+    }
+
+    public void setPracticeScene(Stage stage) throws Exception {
+        setScene(stage, FXML.PRACTICE);
+    }
+
+    public void setPracticeResultScene(Stage stage) throws Exception {
+        System.out.println("setPracticeResultScene");
+        setScene(stage, FXML.PRACTICE_RESULT);
     }
 }
