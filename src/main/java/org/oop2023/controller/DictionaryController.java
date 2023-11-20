@@ -107,21 +107,6 @@ public class DictionaryController extends SceneController {
             search();
             suggestionListView.setVisible(false);
             resultField.setVisible(true);
-        } else {
-            String word = searchField.getText();
-            ArrayList<String> suggestions = super.getAlikeWord(word);
-            if (word.length() == 0 || suggestions.size() == 0) {
-                microButton.setVisible(false);
-                suggestionListView.setVisible(false);
-                resultField.setVisible(false);
-                return;
-            }
-
-            suggestionListView.getItems().clear();
-            suggestionListView.setPrefHeight(suggestions.size() * 24);
-            suggestionListView.getItems().addAll(suggestions);
-            suggestionListView.setVisible(true);
-            resultField.setVisible(false);
         }
         if (event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.UP) {
             suggestionListView.requestFocus();
