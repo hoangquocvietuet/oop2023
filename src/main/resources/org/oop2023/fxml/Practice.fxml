@@ -21,10 +21,10 @@
          </image>
       </ImageView>
       <TextField fx:id="questionField" editable="false" focusTraversable="false" layoutX="250.0" layoutY="200.0" prefHeight="36.0" prefWidth="509.0" />
-      <TextField fx:id="answer1Field" editable="false" layoutX="250.0" layoutY="270.0" prefHeight="36.0" prefWidth="509.0" styleClass="answer-field" />
-      <TextField fx:id="answer2Field" editable="false" layoutX="250.0" layoutY="310.0" prefHeight="36.0" prefWidth="509.0" styleClass="answer-field" />
-      <TextField fx:id="answer3Field" editable="false" layoutX="250.0" layoutY="350.0" prefHeight="36.0" prefWidth="509.0" styleClass="answer-field" />
-      <TextField fx:id="answer4Field" editable="false" layoutX="250.0" layoutY="390.0" prefHeight="36.0" prefWidth="509.0" styleClass="answer-field" />
+      <TextField fx:id="answer1Field" editable="false" focusTraversable="false" layoutX="250.0" layoutY="270.0" prefHeight="36.0" prefWidth="509.0" styleClass="answer-field" />
+      <TextField fx:id="answer2Field" editable="false" focusTraversable="false" layoutX="250.0" layoutY="310.0" prefHeight="36.0" prefWidth="509.0" styleClass="answer-field" />
+      <TextField fx:id="answer3Field" editable="false" focusTraversable="false" layoutX="250.0" layoutY="350.0" prefHeight="36.0" prefWidth="509.0" styleClass="answer-field" />
+      <TextField fx:id="answer4Field" editable="false" focusTraversable="false" layoutX="250.0" layoutY="390.0" prefHeight="36.0" prefWidth="509.0" styleClass="answer-field" />
       <Label fx:id="timerLabel" layoutX="181.0" layoutY="127.0" prefHeight="34.0" prefWidth="223.0" styleClass="time-label" text="00:00" />
       <Button fx:id="nextButton" layoutX="706.0" layoutY="446.0" mnemonicParsing="false" onMouseClicked="#nextQuestionOnClicked" styleClass="next-button" />
       <Button fx:id="finishButton" layoutX="620.0" layoutY="446.0" mnemonicParsing="false" onMouseClicked="#checkButtonOnMouseClicked" styleClass="check-button" />

@@ -16,7 +16,7 @@
             <Image url="@../images/Home/dictionary.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="885.0" layoutY="190.0" styleClass="custom-icon">
+      <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="885.0" layoutY="190.0" onMouseClicked="#gameOnMouseClicked" styleClass="custom-icon">
          <image>
             <Image url="@../images/Home/game.png" />
          </image>

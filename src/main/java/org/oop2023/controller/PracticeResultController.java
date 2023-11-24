@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.Node;
 
-public class ResultController extends SceneController {
+public class PracticeResultController extends SceneController {
 
     @FXML
     private ImageView reloadButton;
