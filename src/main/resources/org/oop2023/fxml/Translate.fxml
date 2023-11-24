@@ -35,10 +35,10 @@
       </ImageView>
       <TextArea fx:id="textField1" layoutX="260.0" layoutY="220.0" onKeyPressed="#textField1OnKeyPressed" prefHeight="200.0" prefWidth="250.0" styleClass="rounded-corner" />
       <TextArea fx:id="textField2" layoutX="580.0" layoutY="220.0" prefHeight="200.0" prefWidth="250.0" styleClass="rounded-corner" />
-      <Button fx:id="swapButton" layoutX="521.0" layoutY="298.0" mnemonicParsing="false" onMouseClicked="#swapButtonOnMouseClicked" styleClass="swap">
+      <!-- <Button fx:id="swapButton" layoutX="521.0" layoutY="298.0" mnemonicParsing="false" onMouseClicked="#swapButtonOnMouseClicked" styleClass="swap"> -->
       <TextArea fx:id="textField1" layoutX="260.0" layoutY="220.0" onKeyPressed="#textField1OnKeyPressed" prefHeight="200.0" prefWidth="250.0" />
       <TextArea fx:id="textField2" layoutX="580.0" layoutY="220.0" prefHeight="200.0" prefWidth="250.0" />
-      <!-- <Button fx:id="swapButton" layoutX="523.0" layoutY="298.0" mnemonicParsing="false" onMouseClicked="#swapButtonOnMouseClicked">
+      <Button fx:id="swapButton" layoutX="523.0" layoutY="298.0" mnemonicParsing="false" onMouseClicked="#swapButtonOnMouseClicked">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0">
                <image>

@@ -21,33 +21,33 @@
             <Image url="@../images/Dictionary/house.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="112.0" fitWidth="200.0" layoutX="57.0" layoutY="225.0">
+      <ImageView fitHeight="112.0" fitWidth="200.0" layoutX="20.0" layoutY="222.0">
          <image>
             <Image url="@../images/Items/notebook.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="112.0" fitWidth="200.0" layoutX="103.0" layoutY="393.0">
+      <ImageView fitHeight="112.0" fitWidth="200.0" layoutX="50.0" layoutY="396.0">
          <image>
             <Image url="@../images/Items/books.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="168.0" fitWidth="300.0" layoutX="754.0" layoutY="257.0">
+      <ImageView fitHeight="168.0" fitWidth="300.0" layoutX="414.0" layoutY="538.0">
          <image>
             <Image url="@../images/Items/book_country.png" />
          </image>
       </ImageView>
-      <TextField fx:id="searchField" layoutX="346.0" layoutY="207.0" onKeyPressed="#searchFieldOnKeyPressed" prefHeight="30.0" prefWidth="410.0">
+      <TextField fx:id="searchField" layoutX="240.0" layoutY="205.0" onKeyPressed="#searchFieldOnKeyPressed" prefHeight="30.0" prefWidth="400.0">
          <styleClass>
             <String fx:value="search-box" />
             <String fx:value="rounded-corner" />
          </styleClass></TextField>
-      <TextArea fx:id="resultField" editable="false" layoutX="346.0" layoutY="286.0" prefHeight="200.0" prefWidth="400.0">
+      <TextArea fx:id="resultField" editable="false" layoutX="580.0" layoutY="235.0" onKeyPressed="#resultFieldOnKeyPressed" prefHeight="250.0" prefWidth="300.0">
          <styleClass>
             <String fx:value="result" />
             <String fx:value="rounded-corner" />
          </styleClass></TextArea>
-      <ListView fx:id="suggestionListView" layoutX="346.0" layoutY="236.0" prefHeight="249.0" prefWidth="400.0" styleClass="rounded-corner" onMouseClicked="#suggestionListViewOnMouseClicked" onKeyPressed="#suggestionListViewOnKeyPressed" />
-      <Button layoutX="709.0" layoutY="207.0" mnemonicParsing="false" onMouseClicked="#searchButtonOnMouseClicked">
+      <ListView fx:id="suggestionListView" layoutX="240.0" layoutY="235.0" onKeyPressed="#suggestionListViewOnKeyPressed" onMouseClicked="#suggestionListViewOnMouseClicked" prefHeight="250.0" prefWidth="300.0" styleClass="rounded-corner" />
+      <Button layoutX="503.0" layoutY="205.0" mnemonicParsing="false" onMouseClicked="#searchButtonOnMouseClicked">
          <graphic>
             <ImageView fitHeight="21.0" fitWidth="20.0" styleClass="search-button">
                <image>
@@ -56,11 +56,29 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="microButton" layoutX="673.0" layoutY="207.0" mnemonicParsing="false" onMouseClicked="#microOnMouseClicked">
+      <Button fx:id="microButton" layoutX="466.0" layoutY="205.0" mnemonicParsing="false" onMouseClicked="#microOnMouseClicked">
          <graphic>
             <ImageView fitHeight="21.0" fitWidth="20.0">
                <image>
                   <Image url="@../images/Dictionary/microphone.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="806.0" layoutY="485.0" mnemonicParsing="false" onMouseClicked="#addButtonOnMouseClicked">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0">
+               <image>
+                  <Image url="@../images/Dictionary/add.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="842.0" layoutY="485.0" mnemonicParsing="false" onMouseClicked="#editButtonOnMouseClicked">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0">
+               <image>
+                  <Image url="@../images/Dictionary/pencil.png" />
                </image>
             </ImageView>
          </graphic>
