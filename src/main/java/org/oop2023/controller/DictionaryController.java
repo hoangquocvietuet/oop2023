@@ -33,6 +33,46 @@ public class DictionaryController extends SceneController {
     @FXML
     private Button microButton;
 
+    @FXML
+    private Button addButton;
+
+    @FXML
+    private Button editButton;
+
+    @FXML
+    private ImageView span;
+
+    @FXML
+    private Button closeButton;
+
+    @FXML
+    private Button doneButton;
+
+    @FXML
+    private TextArea desField;
+
+    @FXML
+    private TextField pronuncField;
+    
+    @FXML
+    private TextField wordField;
+
+    void updateVisitable(boolean type) {
+        searchField.setVisible(type);
+        resultField.setVisible(type);
+        suggestionListView.setVisible(type);
+        microButton.setVisible(type);
+        addButton.setVisible(type);
+        editButton.setVisible(type);
+
+        span.setVisible(!type);
+        closeButton.setVisible(!type);
+        doneButton.setVisible(!type);
+        desField.setVisible(!type);
+        pronuncField.setVisible(!type);
+        wordField.setVisible(!type);
+    }
+
     private ArrayList<String> allWords = Utils.dictionary.getWordsList();
     /**
      * Initialize the controller.
@@ -62,6 +102,8 @@ public class DictionaryController extends SceneController {
                 suggestionListView.getSelectionModel().selectFirst();
             }
         });
+
+        updateVisitable(true);
     };
 
     /**
@@ -166,6 +208,34 @@ public class DictionaryController extends SceneController {
             search();
         }
     }
+    
+    /**
+     * Stop edit or insert a word.
+     * @param event
+     */
+    @FXML
+    void closeButtonOnMouseClicked(MouseEvent event) {
+        wordField.setText("");
+        pronuncField.setText("");
+        desField.setText("");
+        updateVisitable(true);
+    }
+
+    /**
+     * Done edit or insert a word.
+     * @param event
+     */
+    @FXML
+    void doneButtonOnMouseClicked(MouseEvent event) {
+        wordField.setText("");
+        pronuncField.setText("");
+        desField.setText("");
+        updateVisitable(true);
+        String word = wordField.getText();
+        String pronunc = pronuncField.getText();
+        String description = desField.getText();
+        // Them vao tu dien, neu co -> replace, neu khong co -> them.
+    }
 
     /**
      * add a new word to the dictionary.
@@ -173,7 +243,7 @@ public class DictionaryController extends SceneController {
      */
     @FXML
     void addButtonOnMouseClicked(MouseEvent event) {
-        resultField.setEditable(true);
+        updateVisitable(false);
         // Them vao day
     }
 
@@ -183,7 +253,7 @@ public class DictionaryController extends SceneController {
      */
     @FXML
     void editButtonOnMouseClicked(MouseEvent event) {
-        resultField.setEditable(true);
+        updateVisitable(false);
         // Them vao day
     }
 
