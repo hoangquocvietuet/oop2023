@@ -33,6 +33,7 @@ public class DictionaryController extends SceneController {
     @FXML
     private Button microButton;
 
+    private ArrayList<String> allWords = Utils.dictionary.getWordsList();
     /**
      * Initialize the controller.
      */
@@ -40,29 +41,25 @@ public class DictionaryController extends SceneController {
     public void initialize() {
         searchField.setPromptText("Enter a word to search.");
         resultField.setPromptText("Result will be shown here.");
-        setResult("Hello world!");
-
-        suggestionListView.setVisible(false);
-        resultField.setVisible(false);
+        suggestionListView.getItems().addAll(allWords);
+        suggestionListView.getSelectionModel().selectFirst();
         microButton.setVisible(false);
+
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue.length() == 0) {
-                suggestionListView.setVisible(false);
-                resultField.setVisible(false);
+            if (newValue.length() == 0) {
+                microButton.setVisible(false);
+                suggestionListView.getItems().clear();
+                suggestionListView.getItems().addAll(allWords);
+                suggestionListView.getSelectionModel().selectFirst();
             } else {
                 ArrayList<String> suggestions = Utils.dictionary.getAlike(newValue, 10);
-                if(suggestions.size() == 0) {
-                    suggestionListView.setVisible(false);
-                    resultField.setVisible(false);
+                if (suggestions.size() == 0) {
                     return;
                 }
 
                 suggestionListView.getItems().clear();
-                suggestionListView.setPrefHeight(suggestions.size() * 24);
                 suggestionListView.getItems().addAll(suggestions);
-                suggestionListView.setVisible(true);
                 suggestionListView.getSelectionModel().selectFirst();
-                resultField.setVisible(false);
             }
         });
     };
@@ -105,8 +102,8 @@ public class DictionaryController extends SceneController {
     void searchFieldOnKeyPressed(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
             search();
-            suggestionListView.setVisible(false);
-            resultField.setVisible(true);
+            // suggestionListView.setVisible(false);
+            // resultField.setVisible(true);
         }
         if (event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.UP) {
             suggestionListView.requestFocus();
@@ -122,8 +119,8 @@ public class DictionaryController extends SceneController {
     void searchButtonOnMouseClicked(MouseEvent event) {
         if (event.getClickCount() == 1) {
             search();
-            suggestionListView.setVisible(false);
-            resultField.setVisible(true);
+            // suggestionListView.setVisible(false);
+            // resultField.setVisible(true);
         }
     }
 
@@ -150,13 +147,13 @@ public class DictionaryController extends SceneController {
     @FXML
     void suggestionListViewOnMouseClicked(MouseEvent event) {
         System.out.println("Suggestion clicked");
-        if(event.getClickCount() == 1) {
+        if (event.getClickCount() == 1) {
             String text = suggestionListView.getSelectionModel().getSelectedItem();
             System.out.println(text);
             searchField.setText(text);
             search();
-            suggestionListView.setVisible(false);
-            resultField.setVisible(true);
+            // suggestionListView.setVisible(false);
+            // resultField.setVisible(true);
         }
     }
 
@@ -167,8 +164,39 @@ public class DictionaryController extends SceneController {
             System.out.println(text);
             searchField.setText(text);
             search();
-            suggestionListView.setVisible(false);
-            resultField.setVisible(true);
+        }
+    }
+
+    /**
+     * add a new word to the dictionary.
+     * @param event
+     */
+    @FXML
+    void addButtonOnMouseClicked(MouseEvent event) {
+        resultField.setEditable(true);
+        // Them vao day
+    }
+
+    /**
+     * edit a word from the dictionary.
+     * @param event
+     */
+    @FXML
+    void editButtonOnMouseClicked(MouseEvent event) {
+        resultField.setEditable(true);
+        // Them vao day
+    }
+
+    /**
+     * update ditionary.
+     */
+    @FXML
+    void resultFieldOnKeyPressed(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            resultField.setEditable(false);
+            // Them vao day
+
+            allWords = Utils.dictionary.getWordsList();
         }
     }
 }

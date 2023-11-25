@@ -76,4 +76,17 @@ public class HomeController extends SceneController {
             System.out.println(e);
         }
     }
+
+    @FXML
+    void gameOnMouseClicked(MouseEvent event) {
+        System.out.println("Game clicked");
+        try {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            super.setGameScene(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e);
+        }
+    }
+
 }

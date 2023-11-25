@@ -41,4 +41,20 @@ public class SceneController {
         System.out.println("setPracticeResultScene");
         setScene(stage, FXML.PRACTICE_RESULT);
     }
+
+    public void setGameScene(Stage stage) throws Exception {
+        setScene(stage, FXML.GAME);
+    }
+
+    public void setGameResultScene(Stage stage) throws Exception {
+        setScene(stage, FXML.GAME_RESULT);
+    }
+
+    public void setGameResultScene(Stage stage, int score) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXML.GAME_RESULT));
+        stage.setScene(new Scene(fxmlLoader.load()));
+        GameResultController gameResultController = fxmlLoader.<GameResultController>getController();
+        gameResultController.setScore(score);
+        stage.show();
+    }
 }
