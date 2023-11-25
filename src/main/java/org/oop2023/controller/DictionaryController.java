@@ -144,7 +144,7 @@ public class DictionaryController extends SceneController {
      */
     @FXML
     void microOnMouseClicked(MouseEvent event) {
-
+        Utils.speakWord(searchField.getText());
     }
 
     @FXML

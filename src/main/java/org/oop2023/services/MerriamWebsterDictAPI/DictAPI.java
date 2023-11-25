@@ -20,7 +20,6 @@ public class DictAPI {
     public static String API_KEY = "4e3c0ced-a6d8-492b-b0e3-bdbfcc432dd5";
     public static String API_URL = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/";
     public static String AUDIO_URL = "https://media.merriam-webster.com/audio/prons/en/us/mp3/";
-    public static String AUDIO_DOWNLOAD_DESTINATION = "src/main/resources/org/oop2023/audio/responseAudio.mp3";
 
     /**
      * Default constructor.
@@ -66,30 +65,30 @@ public class DictAPI {
         }
     }
 
-    private static String getAudioURL(String audioFileName) {
-        String subDirectory = audioFileName.substring(0, 1);
-        if (audioFileName.startsWith("bix")) {
-            subDirectory = "bix";
-        }
-        if (audioFileName.startsWith("gg")) {
-            subDirectory = "gg";
-        }
-        if (audioFileName.startsWith("_")) {
-            subDirectory = "number";
-        }
-        for (int i = 0; i <= 9; i ++) {
-            if (audioFileName.startsWith(String.valueOf(i))) {
-                subDirectory = "number";
-                break;
+    public static String getAudioURL(String word) {
+        try {
+            String audioFileName = getAudioFileName(word);
+            System.out.println(audioFileName);
+            String subDirectory = audioFileName.substring(0, 1);
+            if (audioFileName.startsWith("bix")) {
+                subDirectory = "bix";
             }
+            if (audioFileName.startsWith("gg")) {
+                subDirectory = "gg";
+            }
+            if (audioFileName.startsWith("_")) {
+                subDirectory = "number";
+            }
+            for (int i = 0; i <= 9; i ++) {
+                if (audioFileName.startsWith(String.valueOf(i))) {
+                    subDirectory = "number";
+                    break;
+                }
+            }
+            return AUDIO_URL + subDirectory + "/" + audioFileName + ".mp3";
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        return AUDIO_URL + subDirectory + "/" + audioFileName + ".mp3";
-    }
-
-    private static void downloadAudio(String audioURL) throws IOException {
-        URL url = new URL(audioURL);
-        InputStream in = url.openStream();
-        Files.copy(in, Path.of(AUDIO_DOWNLOAD_DESTINATION), StandardCopyOption.REPLACE_EXISTING);
     }
 
     private static String parseStringToURL(String word) {

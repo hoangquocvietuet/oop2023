@@ -3,8 +3,11 @@ package org.oop2023.controller;
 import java.time.LocalTime;
 
 import org.oop2023.Utils;
+import org.oop2023.services.textToSpeechAPI.Speaker;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -50,6 +53,16 @@ public class TranslateController extends SceneController {
         textField1.textProperty().addListener((observable, oldValue, newValue) -> {
             textField1.setText(newValue);
         });
+
+        textField1.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue.contains("\n")) {
+                    textField1.setText(oldValue);
+                }
+            }
+        });
+
     };
 
     @FXML
@@ -76,11 +89,13 @@ public class TranslateController extends SceneController {
     @FXML
     void speaker1OnMouseClicked(MouseEvent event) {
         System.out.println("Speaker 1 clicked");
+        Utils.speakWord(textField1.getText()); 
     }
 
     @FXML
     void speaker2OnMouseClicked(MouseEvent event) {
         System.out.println("Speaker 2 clicked");
+        Utils.speakWord(textField2.getText());
     }
 
     @FXML
@@ -98,6 +113,9 @@ public class TranslateController extends SceneController {
             protected Void call() throws Exception {
                 // Gọi API ở đây và lưu kết quả vào biến
                 // Giả sử API mất 5 giây để trả lời
+                if (thisApiCallNumber != apiCallCount) {
+                    return null;
+                }
                 String resultText = Utils.translator.EtoV(text);
     
                 // Cập nhật giao diện người dùng với kết quả từ API
