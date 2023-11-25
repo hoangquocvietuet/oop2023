@@ -20,9 +20,11 @@ public class PracticeResultController extends SceneController {
     ScaleTransition scaleIn;
     ScaleTransition scaleOut;
 
+    private int score = 0;
+
     @FXML
     void initialize() {
-        String score = "Your score: 100";
+        String score = "Your score: " + Integer.toString(this.score) + "/10";
         scoreField.setText(score);
 
         scaleIn = new ScaleTransition(Duration.millis(500), reloadButton);
@@ -79,4 +81,13 @@ public class PracticeResultController extends SceneController {
         }
     }
 
+    /**
+     * Set score.
+     * 
+     * @param score
+     */
+    public void setScore(int score) {
+        this.score = score;
+        scoreField.setText("Your score: " + Integer.toString(this.score) + "/10");
+    }
 }

@@ -42,6 +42,15 @@ public class SceneController {
         setScene(stage, FXML.PRACTICE_RESULT);
     }
 
+    public void setPracticeResultScene(Stage stage, int score) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXML.PRACTICE_RESULT));
+        stage.setScene(new Scene(fxmlLoader.load()));
+        PracticeResultController practiceResultController = fxmlLoader.<PracticeResultController>getController();
+        practiceResultController.setScore(score);
+        stage.show();
+    }
+
+
     public void setGameScene(Stage stage) throws Exception {
         setScene(stage, FXML.GAME);
     }

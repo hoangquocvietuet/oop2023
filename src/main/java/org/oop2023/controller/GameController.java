@@ -1,5 +1,9 @@
 package org.oop2023.controller;
 
+import java.util.Collections;
+
+import org.oop2023.Utils;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.RotateTransition;
@@ -201,6 +205,13 @@ public class GameController extends SceneController {
         setRotate();
         setVisibility(true);
         characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        // shuffle characters
+        for (int i = 0; i < characters.length(); ++i) {
+            int j = (int) (Math.random() * characters.length());
+            char tmp = characters.charAt(i);
+            characters = characters.substring(0, i) + characters.charAt(j) + characters.substring(i + 1);
+            characters = characters.substring(0, j) + tmp + characters.substring(j + 1);
+        }
         loadGame(characters);
 
         timeExpired = false;
@@ -263,13 +274,11 @@ public class GameController extends SceneController {
      * @return
      */
     boolean check(String answer) {
-        answer = answer.toUpperCase();
-        for (int i = 0; i < answer.length(); ++i) {
-            if (characters.indexOf(answer.charAt(i)) == -1) {
-                return false;
-            }
-        }
+        answer = answer.toLowerCase();
         if (answer.indexOf(characters.charAt(3)) == -1) {
+            return false;
+        }
+        if (Utils.dictionary.getDetails(answer) == null) {
             return false;
         }
         return true;

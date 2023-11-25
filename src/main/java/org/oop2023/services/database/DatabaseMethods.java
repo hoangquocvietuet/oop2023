@@ -12,6 +12,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 public class DatabaseMethods {
     /**
      * Get all words in the database.
@@ -118,5 +120,32 @@ public class DatabaseMethods {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * Get a list of questions from the database
+     */
+    public static List<Question> getRandomQuestions(int count) throws RuntimeException {
+        List<Question> questions = new ArrayList<>();
+        Statement statement = DatabaseController.getStatement();
+        try {
+            ResultSet res = statement.executeQuery(
+                    "SELECT * FROM practice ORDER BY RANDOM() LIMIT " + count);
+            while (res.next()) {
+                String question = res.getString("question");
+                String choice1 = res.getString("caseA");
+                String choice2 = res.getString("caseB");
+                String choice3 = res.getString("caseC");
+                int key = res.getInt("true_case") - 1;
+                List<String> choices = new ArrayList<>();
+                choices.add(choice1);
+                choices.add(choice2);
+                choices.add(choice3);
+                questions.add(new Question(question, choices, key));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return questions;
     }
 }

@@ -24,14 +24,12 @@
       <TextField fx:id="answer1Field" editable="false" focusTraversable="false" layoutX="250.0" layoutY="270.0" prefHeight="36.0" prefWidth="509.0" styleClass="answer-field" />
       <TextField fx:id="answer2Field" editable="false" focusTraversable="false" layoutX="250.0" layoutY="310.0" prefHeight="36.0" prefWidth="509.0" styleClass="answer-field" />
       <TextField fx:id="answer3Field" editable="false" focusTraversable="false" layoutX="250.0" layoutY="350.0" prefHeight="36.0" prefWidth="509.0" styleClass="answer-field" />
-      <TextField fx:id="answer4Field" editable="false" focusTraversable="false" layoutX="250.0" layoutY="390.0" prefHeight="36.0" prefWidth="509.0" styleClass="answer-field" />
       <Label fx:id="timerLabel" layoutX="181.0" layoutY="127.0" prefHeight="34.0" prefWidth="223.0" styleClass="time-label" text="00:00" />
       <Button fx:id="nextButton" layoutX="706.0" layoutY="446.0" mnemonicParsing="false" onMouseClicked="#nextQuestionOnClicked" styleClass="next-button" />
       <Button fx:id="finishButton" layoutX="620.0" layoutY="446.0" mnemonicParsing="false" onMouseClicked="#checkButtonOnMouseClicked" styleClass="check-button" />
       <RadioButton fx:id="optionA" layoutX="255.0" layoutY="280.0" mnemonicParsing="false" onMouseClicked="#optionAOnMouseClicked" text="A." />
       <RadioButton fx:id="optionB" layoutX="255.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#optionBOnMouseClicked" text="B." />
       <RadioButton fx:id="optionC" layoutX="255.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#optionCOnMouseClicked" text="C." />
-      <RadioButton fx:id="optionD" layoutX="255.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#optionDOnMouseClicked" text="D." />
       <ImageView fx:id="readyImage" fitHeight="112.0" fitWidth="200.0" layoutX="456.0" layoutY="350.0">
          <image>
             <Image url="@../images/Practice/ready.png" />

@@ -51,7 +51,7 @@ public class DictionaryController extends SceneController {
                 suggestionListView.getItems().clear();
                 suggestionListView.getItems().addAll(allWords);
                 suggestionListView.getSelectionModel().selectFirst();
-            } else {
+            } else { 
                 ArrayList<String> suggestions = Utils.dictionary.getAlike(newValue, (int)1e9);
                 if (suggestions.size() == 0) {
                     return;

@@ -86,7 +86,7 @@ public class DictAPI {
     }
 
     public static void main(String[] args) throws APIKeyException, IOException, InterruptedException, APIAudioNotFoundException {
-        getAudio("croissant");
+        
     }
 
 }

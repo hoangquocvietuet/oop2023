@@ -3,6 +3,8 @@ package org.oop2023.utils;
 import org.oop2023.services.database.DatabaseController;
 import org.oop2023.services.database.DatabaseMethods;
 
+import static org.oop2023.services.database.DatabaseMethods.getRandomQuestions;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,12 +59,12 @@ public class Question {
      */
     public static void main(String[] args) {
         DatabaseController.start();
-        Question question = Question.getRandomQuestion();
-        System.out.println(question.getQuestion());
-        for (String choice : question.getChoices()) {
-            System.out.println(choice);
+        List<Question> questions = getRandomQuestions(5);
+        for (Question question : questions) {
+            System.out.println(question.getQuestion());
+            System.out.println(question.getChoices());
+            System.out.println(question.getKey());
         }
-        System.out.println(question.getKey());
         DatabaseController.stop();
     }
 }

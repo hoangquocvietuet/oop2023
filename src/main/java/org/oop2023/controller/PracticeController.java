@@ -2,6 +2,11 @@ package org.oop2023.controller;
 
 import javafx.util.Duration;
 import java.util.List;
+
+import org.oop2023.services.database.DatabaseController;
+import org.oop2023.services.database.DatabaseMethods;
+import org.oop2023.utils.Question;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
@@ -21,6 +26,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.event.EventHandler;
 
+import org.oop2023.Utils;
+
 public class PracticeController extends SceneController {
 
     @FXML
@@ -33,9 +40,6 @@ public class PracticeController extends SceneController {
     private TextField answer3Field;
 
     @FXML
-    private TextField answer4Field;
-
-    @FXML
     private TextField questionField;
 
     @FXML
@@ -46,9 +50,6 @@ public class PracticeController extends SceneController {
 
     @FXML
     private RadioButton optionC;
-
-    @FXML
-    private RadioButton optionD;
 
     @FXML
     private Button finishButton;
@@ -73,6 +74,15 @@ public class PracticeController extends SceneController {
 
     private boolean timeExpired = false;
 
+    private int currentQuestion = 0;
+
+    private final int totalQuestions = 10;
+
+    private int currentScore = 0;
+
+    private List<Question> listQuestions;
+
+
     ScaleTransition scaleIn;
     ScaleTransition scaleOut;
 
@@ -85,11 +95,9 @@ public class PracticeController extends SceneController {
         answer1Field.setVisible(visibility);
         answer2Field.setVisible(visibility);
         answer3Field.setVisible(visibility);
-        answer4Field.setVisible(visibility);
         optionA.setVisible(visibility);
         optionB.setVisible(visibility);
         optionC.setVisible(visibility);
-        optionD.setVisible(visibility);
         questionField.setVisible(visibility);
         timerLabel.setVisible(visibility);
         nextButton.setVisible(visibility);
@@ -101,17 +109,20 @@ public class PracticeController extends SceneController {
      */
     @FXML
     void initialize() {
+        currentScore = 0;
+        DatabaseController.start();
+        listQuestions = DatabaseMethods.getRandomQuestions(Question.QUESTIONS_COUNT);
+        DatabaseController.stop();  
+
         answerGroup = new ToggleGroup();
         optionA.setToggleGroup(answerGroup);
         optionB.setToggleGroup(answerGroup);
         optionC.setToggleGroup(answerGroup);
-        optionD.setToggleGroup(answerGroup);
 
-        questionField.setText("How are you?");
-        answer1Field.setText("I'm fine.");
-        answer2Field.setText("I'm good.");
-        answer3Field.setText("I'm bad.");
-        answer4Field.setText("I'm sad.");
+        questionField.setText(listQuestions.get(currentQuestion).getQuestion());
+        answer1Field.setText(listQuestions.get(currentQuestion).getChoices().get(0));
+        answer2Field.setText(listQuestions.get(currentQuestion).getChoices().get(1));
+        answer3Field.setText(listQuestions.get(currentQuestion).getChoices().get(2));
 
         timeExpired = false;
         timeInSeconds = 60 * 5;
@@ -162,19 +173,17 @@ public class PracticeController extends SceneController {
         }
     }
 
-    /**
-     * Set next question.
-     * 
-     * @param question
-     * @param answer
-     */
-    void setNextQuestion(String question, List<String> answer) {
-        assert (answer.size() == 4);
-        questionField.setText(question);
-        answer1Field.setText(answer.get(0));
-        answer2Field.setText(answer.get(1));
-        answer3Field.setText(answer.get(2));
-        answer4Field.setText(answer.get(3));
+    void setNextQuestion() {
+        if (currentQuestion == totalQuestions - 1) {
+            finishButton.setVisible(true);
+            nextButton.setVisible(false);
+        } else {
+            currentQuestion++;
+            questionField.setText(listQuestions.get(currentQuestion).getQuestion());
+            answer1Field.setText(listQuestions.get(currentQuestion).getChoices().get(0));
+            answer2Field.setText(listQuestions.get(currentQuestion).getChoices().get(1));
+            answer3Field.setText(listQuestions.get(currentQuestion).getChoices().get(2));
+        }
     }
 
     /**
@@ -185,7 +194,7 @@ public class PracticeController extends SceneController {
     @FXML
     void nextQuestionOnClicked(MouseEvent event) {
         System.out.println("Next question clicked");
-        setNextQuestion("How are you?", List.of("I'm fine.", "I'm good.", "I'm bad.", "I'm sad."));
+        setNextQuestion();
         answerGroup.selectToggle(null);
     }
 
@@ -209,7 +218,8 @@ public class PracticeController extends SceneController {
             if (response == ButtonType.YES) {
                 try {
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    super.setPracticeResultScene(stage);
+                    System.out.println("Score: " + currentScore);
+                    super.setPracticeResultScene(stage, currentScore);
                 } catch (Exception e) {
                     System.out.println(e);
                 }
@@ -231,7 +241,6 @@ public class PracticeController extends SceneController {
             int minutes = timeInSeconds / 60;
             int seconds = timeInSeconds % 60;
             String time = String.format("%02d:%02d", minutes, seconds);
-            System.out.println(time);
             timerLabel.setText(time);
         } else {
             timeline.stop();
@@ -273,7 +282,9 @@ public class PracticeController extends SceneController {
      */
     @FXML
     void optionAOnMouseClicked(MouseEvent event) {
-
+        if (listQuestions.get(currentQuestion).getKey() == 0) {
+            currentScore++;
+        }
     }
 
     /**
@@ -283,7 +294,9 @@ public class PracticeController extends SceneController {
      */
     @FXML
     void optionBOnMouseClicked(MouseEvent event) {
-
+        if (listQuestions.get(currentQuestion).getKey() == 1) {
+            currentScore++;
+        }
     }
 
     /**
@@ -293,16 +306,8 @@ public class PracticeController extends SceneController {
      */
     @FXML
     void optionCOnMouseClicked(MouseEvent event) {
-
-    }
-
-    /**
-     * Handle option D clicked event.
-     * 
-     * @param event
-     */
-    @FXML
-    void optionDOnMouseClicked(MouseEvent event) {
-
+        if (listQuestions.get(currentQuestion).getKey() == 2) {
+            currentScore++;
+        }
     }
 }
