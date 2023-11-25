@@ -28,16 +28,6 @@ public class DictAPI {
 
     }
 
-    public static void getAudio(String word) throws RuntimeException {
-        try {
-            String audioFileName = getAudioFileName(word);
-            String audioURL = getAudioURL(audioFileName);
-            downloadAudio(audioURL);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private static String getAudioFileName(String word)
             throws RuntimeException, IOException, InterruptedException, APIKeyException, APIAudioNotFoundException {
         word = parseStringToURL(word);

@@ -52,7 +52,7 @@ public class DictionaryController extends SceneController {
                 suggestionListView.getItems().addAll(allWords);
                 suggestionListView.getSelectionModel().selectFirst();
             } else {
-                ArrayList<String> suggestions = Utils.dictionary.getAlike(newValue, 10);
+                ArrayList<String> suggestions = Utils.dictionary.getAlike(newValue, (int)1e9);
                 if (suggestions.size() == 0) {
                     return;
                 }
