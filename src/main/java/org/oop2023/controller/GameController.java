@@ -1,6 +1,8 @@
 package org.oop2023.controller;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import org.oop2023.Utils;
 
@@ -22,6 +24,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.animation.Timeline;
+import org.oop2023.utils.Dictionary;
+import org.oop2023.utils.Word;
 
 public class GameController extends SceneController {
 
@@ -76,6 +80,8 @@ public class GameController extends SceneController {
     private boolean timeExpired = false;
 
     private int score;
+
+    private Dictionary used;
 
     /**
      * Set visibility of all components.
@@ -174,6 +180,8 @@ public class GameController extends SceneController {
         String text7 = "";
         text7 += characters.charAt(6);
         textField7.setText(text7);
+
+        used = new Dictionary();
     }
 
     /**
@@ -204,13 +212,38 @@ public class GameController extends SceneController {
 
         setRotate();
         setVisibility(true);
-        characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        // shuffle characters
+
+        characters = "ACDEGHILMNORSTU";
+
+        List<Character> consonants = new ArrayList<>();
+        List<Character> vowels = new ArrayList<>();
         for (int i = 0; i < characters.length(); ++i) {
-            int j = (int) (Math.random() * characters.length());
-            char tmp = characters.charAt(i);
-            characters = characters.substring(0, i) + characters.charAt(j) + characters.substring(i + 1);
-            characters = characters.substring(0, j) + tmp + characters.substring(j + 1);
+            char c = characters.charAt(i);
+            if (c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U') {
+                vowels.add(c);
+            } else {
+                consonants.add(c);
+            }
+        }
+        Collections.shuffle(consonants);
+        Collections.shuffle(vowels);
+        List<Character> gameChars = new ArrayList<>();
+
+        gameChars.add(consonants.get(0));
+        gameChars.add(consonants.get(1));
+        gameChars.add(consonants.get(2));
+        gameChars.add(consonants.get(3));
+        gameChars.add(vowels.get(0));
+        gameChars.add(vowels.get(1));
+        if (Math.random() < 0.5) {
+            gameChars.add(consonants.get(4));
+        } else {
+            gameChars.add(vowels.get(3));
+        }
+        Collections.shuffle(gameChars);
+        characters = "";
+        for (int i = 0; i < 7; ++i) {
+            characters += gameChars.get(i);
         }
         loadGame(characters);
 
@@ -274,13 +307,17 @@ public class GameController extends SceneController {
      * @return
      */
     boolean check(String answer) {
-        answer = answer.toLowerCase();
+        answer = answer.toUpperCase();
         if (answer.indexOf(characters.charAt(3)) == -1) {
             return false;
         }
         if (Utils.dictionary.getDetails(answer) == null) {
             return false;
         }
+        if (used.getDetails(answer) != null) {
+            return false;
+        }
+        used.add(new Word(answer));
         return true;
     }
 
