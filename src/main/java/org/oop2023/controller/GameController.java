@@ -1,16 +1,17 @@
 package org.oop2023.controller;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import org.oop2023.Utils;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -22,10 +23,9 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.animation.Timeline;
-import org.oop2023.utils.Dictionary;
-import org.oop2023.utils.Word;
 
 public class GameController extends SceneController {
 
@@ -37,6 +37,9 @@ public class GameController extends SceneController {
 
     @FXML
     private ImageView clock;
+
+    @FXML
+    private ImageView heart;
 
     @FXML
     private ImageView check;
@@ -71,6 +74,9 @@ public class GameController extends SceneController {
     @FXML
     private Label scoreLabel;
 
+    @FXML
+    private Label heartLabel;
+
     private String characters;
 
     private Timeline timeline;
@@ -81,7 +87,39 @@ public class GameController extends SceneController {
 
     private int score;
 
-    private Dictionary used;
+    private int numHeart = 3;
+    
+    private ParallelTransition heartAnimation;
+
+    public static ParallelTransition createFallingHeartAnimation(ImageView heartImageView, double endX, double endY) {
+        // drop
+        TranslateTransition fallTransition = new TranslateTransition(Duration.seconds(1), heartImageView);
+
+        fallTransition.setFromX(0);
+        fallTransition.setFromY(0);
+        fallTransition.setToX(endX);
+        fallTransition.setToY(endY);
+
+        // fade
+        FadeTransition fadeOutTransition = new FadeTransition(Duration.seconds(1), heartImageView);
+        fadeOutTransition.setFromValue(1.0);
+        fadeOutTransition.setToValue(0.0);
+
+        // merge
+        ParallelTransition parallelTransition = new ParallelTransition(fallTransition, fadeOutTransition);
+
+        fadeOutTransition.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                // Đặt lại vị trí và hiển thị heart
+                heartImageView.setTranslateX(0); 
+                heartImageView.setTranslateY(0);
+                heartImageView.setOpacity(1.0);
+            }
+        });
+
+        return parallelTransition;
+    }
 
     /**
      * Set visibility of all components.
@@ -102,8 +140,10 @@ public class GameController extends SceneController {
         answerField.setVisible(visibility);
         clock.setVisible(visibility);
         check.setVisible(visibility);
+        heart.setVisible(visibility);
         timeLabel.setVisible(visibility);
         scoreLabel.setVisible(visibility);
+        heartLabel.setVisible(visibility);
     }
 
     private RotateTransition createRotateTransition(TextField textField, double angle, double durationSeconds) {
@@ -145,6 +185,11 @@ public class GameController extends SceneController {
     @FXML
     void initialize() {
         setVisibility(false);
+        numHeart = 3;
+        score = 0;
+        timeInSeconds = 60 * 5;
+        heartAnimation = createFallingHeartAnimation(heart, 0, 150);
+
     }
 
     /**
@@ -180,8 +225,6 @@ public class GameController extends SceneController {
         String text7 = "";
         text7 += characters.charAt(6);
         textField7.setText(text7);
-
-        used = new Dictionary();
     }
 
     /**
@@ -212,38 +255,13 @@ public class GameController extends SceneController {
 
         setRotate();
         setVisibility(true);
-
-        characters = "ACDEGHILMNORSTU";
-
-        List<Character> consonants = new ArrayList<>();
-        List<Character> vowels = new ArrayList<>();
+        characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        // shuffle characters
         for (int i = 0; i < characters.length(); ++i) {
-            char c = characters.charAt(i);
-            if (c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U') {
-                vowels.add(c);
-            } else {
-                consonants.add(c);
-            }
-        }
-        Collections.shuffle(consonants);
-        Collections.shuffle(vowels);
-        List<Character> gameChars = new ArrayList<>();
-
-        gameChars.add(consonants.get(0));
-        gameChars.add(consonants.get(1));
-        gameChars.add(consonants.get(2));
-        gameChars.add(consonants.get(3));
-        gameChars.add(vowels.get(0));
-        gameChars.add(vowels.get(1));
-        if (Math.random() < 0.5) {
-            gameChars.add(consonants.get(4));
-        } else {
-            gameChars.add(vowels.get(3));
-        }
-        Collections.shuffle(gameChars);
-        characters = "";
-        for (int i = 0; i < 7; ++i) {
-            characters += gameChars.get(i);
+            int j = (int) (Math.random() * characters.length());
+            char tmp = characters.charAt(i);
+            characters = characters.substring(0, i) + characters.charAt(j) + characters.substring(i + 1);
+            characters = characters.substring(0, j) + tmp + characters.substring(j + 1);
         }
         loadGame(characters);
 
@@ -307,17 +325,13 @@ public class GameController extends SceneController {
      * @return
      */
     boolean check(String answer) {
-        answer = answer.toUpperCase();
+        answer = answer.toLowerCase();
         if (answer.indexOf(characters.charAt(3)) == -1) {
             return false;
         }
         if (Utils.dictionary.getDetails(answer) == null) {
             return false;
         }
-        if (used.getDetails(answer) != null) {
-            return false;
-        }
-        used.add(new Word(answer));
         return true;
     }
 
@@ -339,7 +353,12 @@ public class GameController extends SceneController {
                 answerField.setText("");
             } else {
                 System.out.println("Wrong answer");
-                stopGame();
+                --numHeart;
+                heartAnimation.play();
+                if(numHeart == 0) {
+                    stopGame();
+                }
+                heartLabel.setText(String.valueOf(numHeart));
             }
         }
     }

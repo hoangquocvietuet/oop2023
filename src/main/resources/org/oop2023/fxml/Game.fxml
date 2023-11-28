@@ -58,6 +58,12 @@
       <TextField fx:id="answerField" focusTraversable="false" layoutX="293.0" layoutY="261.0" onKeyPressed="#answerFieldOnKeyPressed" prefHeight="66.0" prefWidth="496.0" styleClass="answer-field" />
       <Label fx:id="scoreLabel" layoutX="476.0" layoutY="195.0" styleClass="score-label" text="0" />
       <Label fx:id="timeLabel" layoutX="351.0" layoutY="195.0" styleClass="time-label" text="5:00" />
+      <Label fx:id="heartLabel" layoutX="570.0" layoutY="195.0" styleClass="heart-label" text="3" />
+      <ImageView fx:id="heart" fitHeight="30.0" fitWidth="30.0" layoutX="530.0" layoutY="190.0">
+         <image>
+            <Image url="@../images/Game/heart.png" />
+         </image>
+      </ImageView>
       <ImageView fx:id="clock" fitHeight="30.0" fitWidth="30.0" layoutX="310.0" layoutY="190.0">
          <image>
             <Image url="@../images/Game/clock.png" />
