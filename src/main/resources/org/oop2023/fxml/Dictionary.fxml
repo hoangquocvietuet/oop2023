@@ -40,13 +40,19 @@
          <styleClass>
             <String fx:value="search-box" />
             <String fx:value="rounded-corner" />
+            <String fx:value="search-field" />
          </styleClass></TextField>
       <TextArea fx:id="resultField" editable="false" layoutX="580.0" layoutY="235.0" onKeyPressed="#resultFieldOnKeyPressed" prefHeight="250.0" prefWidth="300.0">
          <styleClass>
             <String fx:value="result" />
             <String fx:value="rounded-corner" />
+            <String fx:value="search-field" />
          </styleClass></TextArea>
-      <ListView fx:id="suggestionListView" layoutX="240.0" layoutY="235.0" onKeyPressed="#suggestionListViewOnKeyPressed" onMouseClicked="#suggestionListViewOnMouseClicked" prefHeight="250.0" prefWidth="300.0" styleClass="rounded-corner" />
+      <ListView fx:id="suggestionListView" layoutX="240.0" layoutY="235.0" onKeyPressed="#suggestionListViewOnKeyPressed" onMouseClicked="#suggestionListViewOnMouseClicked" prefHeight="250.0" prefWidth="300.0">
+         <styleClass>
+            <String fx:value="rounded-corner" />
+            <String fx:value="search-field" />
+         </styleClass></ListView>
       <Button layoutX="503.0" layoutY="205.0" mnemonicParsing="false" onMouseClicked="#searchButtonOnMouseClicked">
          <graphic>
             <ImageView fitHeight="21.0" fitWidth="20.0" styleClass="search-button">
@@ -65,7 +71,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="806.0" layoutY="485.0" mnemonicParsing="false" onMouseClicked="#addButtonOnMouseClicked">
+      <Button fx:id="addButton" layoutX="806.0" layoutY="485.0" mnemonicParsing="false" onMouseClicked="#addButtonOnMouseClicked">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0">
                <image>
@@ -74,7 +80,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="842.0" layoutY="485.0" mnemonicParsing="false" onMouseClicked="#editButtonOnMouseClicked">
+      <Button fx:id="editButton" layoutX="842.0" layoutY="485.0" mnemonicParsing="false" onMouseClicked="#editButtonOnMouseClicked">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0">
                <image>
@@ -83,5 +89,29 @@
             </ImageView>
          </graphic>
       </Button>
+      <ImageView fx:id="span" fitHeight="504.0" fitWidth="900.0" layoutX="110.0">
+         <image>
+            <Image url="@../images/Dictionary/span.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="closeButton" layoutX="520.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#closeButtonOnMouseClicked" text="Close">
+         <styleClass>
+            <String fx:value="close-button" />
+            <String fx:value="rounded-corner" />
+         </styleClass>
+      </Button>
+      <Button fx:id="doneButton" layoutX="570.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#doneButtonOnMouseClicked" text="Done">
+         <styleClass>
+            <String fx:value="done-button" />
+            <String fx:value="rounded-corner" />
+         </styleClass></Button>
+      <TextField fx:id="wordField" layoutX="255.0" layoutY="265.0" prefHeight="30.0" prefWidth="302.0" promptText="Word" styleClass="rounded-corner" />
+      <TextField fx:id="pronuncField" layoutX="557.0" layoutY="265.0" prefHeight="30.0" prefWidth="303.0" promptText="Pronounce" styleClass="rounded-corner" />
+      <TextArea fx:id="desField" layoutX="255.0" layoutY="295.0" prefHeight="175.0" prefWidth="605.0" promptText="Description">
+         <styleClass>
+            <String fx:value="insert-field" />
+            <String fx:value="rounded-corner" />
+         </styleClass>
+      </TextArea>
    </children>
 </Pane>
