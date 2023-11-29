@@ -1,23 +1,40 @@
 package org.oop2023.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 import org.oop2023.Utils;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javazoom.jl.decoder.Bitstream;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
+import javazoom.jl.player.advanced.AdvancedPlayer;
+import javazoom.jl.player.advanced.PlaybackEvent;
+import javazoom.jl.player.advanced.PlaybackListener;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -40,6 +57,9 @@ public class GameController extends SceneController {
 
     @FXML
     private ImageView check;
+
+    @FXML
+    private ImageView heart;
 
     @FXML
     private TextField textField1;
@@ -71,6 +91,9 @@ public class GameController extends SceneController {
     @FXML
     private Label scoreLabel;
 
+    @FXML
+    private Label heartLabel;
+
     private String characters;
 
     private Timeline timeline;
@@ -81,7 +104,44 @@ public class GameController extends SceneController {
 
     private int score;
 
+    private int numHeart;
+
+    private ParallelTransition heartAnimation;
+
     private Dictionary used;
+
+    public static final String wrongSound = "src/main/resources/org/oop2023/music/wrong.wav";
+    public static final String correctSound = "src/main/resources/org/oop2023/music/correct.wav";
+
+    public static ParallelTransition createFallingHeartAnimation(ImageView heartImageView, double endX, double endY) {
+        // drop
+        TranslateTransition fallTransition = new TranslateTransition(Duration.seconds(1), heartImageView);
+
+        fallTransition.setFromX(0);
+        fallTransition.setFromY(0);
+        fallTransition.setToX(endX);
+        fallTransition.setToY(endY);
+
+        // fade
+        FadeTransition fadeOutTransition = new FadeTransition(Duration.seconds(1), heartImageView);
+        fadeOutTransition.setFromValue(1.0);
+        fadeOutTransition.setToValue(0.0);
+
+        // merge
+        ParallelTransition parallelTransition = new ParallelTransition(fallTransition, fadeOutTransition);
+
+        fadeOutTransition.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                // Đặt lại vị trí và hiển thị heart
+                heartImageView.setTranslateX(0);
+                heartImageView.setTranslateY(0);
+                heartImageView.setOpacity(1.0);
+            }
+        });
+
+        return parallelTransition;
+    }
 
     /**
      * Set visibility of all components.
@@ -102,8 +162,10 @@ public class GameController extends SceneController {
         answerField.setVisible(visibility);
         clock.setVisible(visibility);
         check.setVisible(visibility);
+        heart.setVisible(visibility);
         timeLabel.setVisible(visibility);
         scoreLabel.setVisible(visibility);
+        heartLabel.setVisible(visibility);
     }
 
     private RotateTransition createRotateTransition(TextField textField, double angle, double durationSeconds) {
@@ -145,6 +207,44 @@ public class GameController extends SceneController {
     @FXML
     void initialize() {
         setVisibility(false);
+        numHeart = 3;
+        score = 0;
+        timeInSeconds = 60 * 5;
+        heartAnimation = createFallingHeartAnimation(heart, 0, 150);
+
+        /*
+         * try {
+         * String mp3FilePath = "src/main/resources/org/oop2023/music/SoCute.mp3";
+         * playMP3(mp3FilePath);
+         * } catch (Exception e) {
+         * System.out.println(e);
+         * }
+         */
+    }
+
+    /**
+     * Play sound.
+     */
+    private void playSound(String filePath) {
+        try {
+            Media sound = new Media(new File(filePath).toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.play();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Play MP3 file.
+     */
+    private void playMP3(String filePath) throws JavaLayerException {
+        try (FileInputStream fileInputStream = new FileInputStream(filePath)) {
+            Player player = new Player(fileInputStream);
+            player.play();
+        } catch (Exception e) {
+            System.out.println("Error playing MP3: " + e.getMessage());
+        }
     }
 
     /**
@@ -342,9 +442,16 @@ public class GameController extends SceneController {
                 score++;
                 scoreLabel.setText(String.valueOf(score));
                 answerField.setText("");
+                playSound(correctSound);
             } else {
+                playSound(wrongSound);
                 System.out.println("Wrong answer");
-                stopGame();
+                --numHeart;
+                heartAnimation.play();
+                if (numHeart == 0) {
+                    stopGame();
+                }
+                heartLabel.setText(String.valueOf(numHeart));
             }
         }
     }
