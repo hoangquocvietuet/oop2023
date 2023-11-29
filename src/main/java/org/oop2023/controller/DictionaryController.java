@@ -3,6 +3,7 @@ package org.oop2023.controller;
 import java.util.ArrayList;
 
 import org.oop2023.Utils;
+import org.oop2023.utils.Word;
 
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
@@ -50,9 +51,6 @@ public class DictionaryController extends SceneController {
 
     @FXML
     private TextArea desField;
-
-    @FXML
-    private TextField pronuncField;
     
     @FXML
     private TextField wordField;
@@ -69,7 +67,6 @@ public class DictionaryController extends SceneController {
         closeButton.setVisible(!type);
         doneButton.setVisible(!type);
         desField.setVisible(!type);
-        pronuncField.setVisible(!type);
         wordField.setVisible(!type);
     }
 
@@ -79,6 +76,7 @@ public class DictionaryController extends SceneController {
      */
     @FXML
     public void initialize() {
+        resultField.setEditable(false);
         searchField.setPromptText("Enter a word to search.");
         resultField.setPromptText("Result will be shown here.");
         suggestionListView.getItems().addAll(allWords);
@@ -101,6 +99,10 @@ public class DictionaryController extends SceneController {
                 suggestionListView.getItems().addAll(suggestions);
                 suggestionListView.getSelectionModel().selectFirst();
             }
+        });
+
+        wordField.textProperty().addListener((observable, oldValue, newValue) -> {
+            wordField.setText(newValue.toLowerCase());
         });
 
         updateVisitable(true);
@@ -216,7 +218,6 @@ public class DictionaryController extends SceneController {
     @FXML
     void closeButtonOnMouseClicked(MouseEvent event) {
         wordField.setText("");
-        pronuncField.setText("");
         desField.setText("");
         updateVisitable(true);
     }
@@ -227,14 +228,16 @@ public class DictionaryController extends SceneController {
      */
     @FXML
     void doneButtonOnMouseClicked(MouseEvent event) {
-        wordField.setText("");
-        pronuncField.setText("");
-        desField.setText("");
-        updateVisitable(true);
         String word = wordField.getText();
-        String pronunc = pronuncField.getText();
         String description = desField.getText();
         // Them vao tu dien, neu co -> replace, neu khong co -> them.
+        Utils.dictionary.change(word, new Word(word, description, Utils.dictionary.getLanguage()));
+        wordField.setText("");
+        desField.setText("");
+        updateVisitable(true);
+        wordField.setEditable(true);
+        resultField.setText(description);
+        searchField.setText(word);
     }
 
     /**
@@ -244,7 +247,6 @@ public class DictionaryController extends SceneController {
     @FXML
     void addButtonOnMouseClicked(MouseEvent event) {
         updateVisitable(false);
-        // Them vao day
     }
 
     /**
@@ -253,8 +255,14 @@ public class DictionaryController extends SceneController {
      */
     @FXML
     void editButtonOnMouseClicked(MouseEvent event) {
+        String word = searchField.getText();
+        if (Utils.dictionary.getDetails(word) == null) {
+            return;
+        }
+        wordField.setText(word);
+        wordField.setEditable(false);
+        desField.setText(Utils.dictionary.getDetails(word).getDescription());
         updateVisitable(false);
-        // Them vao day
     }
 
     /**

@@ -93,14 +93,10 @@ public class Dictionary {
      * Change a word in the dictionary.
      * @param word The word to be changed
      * @param newWord The new word
-     * @return true if the word is changed, false otherwise
      */
-    public boolean change(String word, Word newWord) {
-        if (!this.delete(word)) {
-            return false;
-        }
+    public void change(String word, Word newWord) {
+        this.delete(word);
         this.add(newWord);
-        return true;
     }
 
     /**

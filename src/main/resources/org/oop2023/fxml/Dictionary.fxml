@@ -105,8 +105,7 @@
             <String fx:value="done-button" />
             <String fx:value="rounded-corner" />
          </styleClass></Button>
-      <TextField fx:id="wordField" layoutX="255.0" layoutY="265.0" prefHeight="30.0" prefWidth="302.0" promptText="Word" styleClass="rounded-corner" />
-      <TextField fx:id="pronuncField" layoutX="557.0" layoutY="265.0" prefHeight="30.0" prefWidth="303.0" promptText="Pronounce" styleClass="rounded-corner" />
+      <TextField fx:id="wordField" layoutX="255.0" layoutY="265.0" prefHeight="30.0" prefWidth="605.0" promptText="Word" styleClass="rounded-corner" />
       <TextArea fx:id="desField" layoutX="255.0" layoutY="295.0" prefHeight="175.0" prefWidth="605.0" promptText="Description">
          <styleClass>
             <String fx:value="insert-field" />

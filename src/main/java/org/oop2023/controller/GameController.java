@@ -314,6 +314,11 @@ public class GameController extends SceneController {
         if (Utils.dictionary.getDetails(answer) == null) {
             return false;
         }
+        for (int i = 0; i < answer.length(); ++i) {
+            if (characters.indexOf(answer.charAt(i)) == -1) {
+                return false;
+            }
+        }
         if (used.getDetails(answer) != null) {
             return false;
         }
