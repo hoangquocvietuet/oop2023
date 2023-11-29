@@ -211,15 +211,6 @@ public class GameController extends SceneController {
         score = 0;
         timeInSeconds = 60 * 5;
         heartAnimation = createFallingHeartAnimation(heart, 0, 150);
-
-        /*
-         * try {
-         * String mp3FilePath = "src/main/resources/org/oop2023/music/SoCute.mp3";
-         * playMP3(mp3FilePath);
-         * } catch (Exception e) {
-         * System.out.println(e);
-         * }
-         */
     }
 
     /**

@@ -4,6 +4,7 @@ import static org.oop2023.services.database.DatabaseMethods.buildDictionaryCLI;
 
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,9 @@ public class Utils {
     public static final Dictionary dictionary = new Dictionary();
     public static final Translator translator = new Translator();
     public static final Speaker speaker = new Speaker();
-
+    public static final Media backgroundSound = new Media(Paths.get("src/main/resources/org/oop2023/music/SoCute.mp3").toUri().toString());
+    public static final MediaPlayer backgroundPlayer = new MediaPlayer(backgroundSound);
+    public static ArrayList<String> allWords;
 
     static void initialize() {
         // Initialize database and dictionary
@@ -34,14 +37,23 @@ public class Utils {
         dictionary.setLanguage(Language.ENGLISH);
         System.out.println("Building dictionary...");
         buildDictionaryCLI(dictionary);
+        allWords = dictionary.getWordsList();
 
         // Initialize translator
 
         // Initialize speaker
         speaker.initialize();
 
-
         DatabaseController.stop();
+
+        // Initialize background sound
+        backgroundPlayer.setOnEndOfMedia(new Runnable() {
+            @Override
+            public void run() {
+                backgroundPlayer.seek(backgroundPlayer.getStartTime());
+            }
+        });
+
     }
 
     public static void speakWord(String word) {
@@ -83,5 +95,23 @@ public class Utils {
         };
 
         new Thread(apiCallTask).start();
+    }
+
+    public static void playBackgroundSound() {
+        System.out.println("Playing background sound...");
+        Task<Void> playBackgroundSoundTask = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                backgroundPlayer.seek(backgroundPlayer.getStartTime());
+                backgroundPlayer.play();
+                return null;
+            }
+        };
+        new Thread(playBackgroundSoundTask).start();
+    }
+
+    public static void stopBackgroundSound() {
+        System.out.println("Stopping background sound...");
+        backgroundPlayer.stop();
     }
 }

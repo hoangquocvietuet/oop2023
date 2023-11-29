@@ -70,7 +70,7 @@ public class DictionaryController extends SceneController {
         wordField.setVisible(!type);
     }
 
-    private ArrayList<String> allWords = Utils.dictionary.getWordsList();
+    // private static ArrayList<String> allWords = Utils.dictionary.getWordsList();
     /**
      * Initialize the controller.
      */
@@ -79,7 +79,7 @@ public class DictionaryController extends SceneController {
         resultField.setEditable(false);
         searchField.setPromptText("Enter a word to search.");
         resultField.setPromptText("Result will be shown here.");
-        suggestionListView.getItems().addAll(allWords);
+        suggestionListView.getItems().addAll(Utils.allWords);
         suggestionListView.getSelectionModel().selectFirst();
         microButton.setVisible(false);
 
@@ -87,7 +87,7 @@ public class DictionaryController extends SceneController {
             if (newValue.length() == 0) {
                 microButton.setVisible(false);
                 suggestionListView.getItems().clear();
-                suggestionListView.getItems().addAll(allWords);
+                suggestionListView.getItems().addAll(Utils.allWords);
                 suggestionListView.getSelectionModel().selectFirst();
             } else { 
                 ArrayList<String> suggestions = Utils.dictionary.getAlike(newValue, (int)1e9);
@@ -274,7 +274,7 @@ public class DictionaryController extends SceneController {
             resultField.setEditable(false);
             // Them vao day
 
-            allWords = Utils.dictionary.getWordsList();
+            // allWords = Utils.dictionary.getWordsList();
         }
     }
 }
