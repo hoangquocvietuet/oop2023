@@ -10,7 +10,7 @@
    <children>
       <ImageView fitHeight="720.0" fitWidth="1080.0">
          <image>
-            <Image url="@../images/Translate/background.png" />
+            <Image url="@../images/Translate/background-2.png" />
          </image>
       </ImageView>
       <ImageView fx:id="Home" fitHeight="60.0" fitWidth="60.0" layoutX="20.0" layoutY="20.0" onMouseClicked="#homeOnMouseClicked" styleClass="custom-icon">
@@ -18,6 +18,24 @@
             <Image url="@../images/Translate/house.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="168.0" fitWidth="300.0" layoutX="805.0" layoutY="445.0">
+         <image>
+            <Image url="@../images/Items/language.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="112.0" fitWidth="200.0" layoutX="21.0" layoutY="213.0">
+         <image>
+            <Image url="@../images/Items/books.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="112.0" fitWidth="200.0" layoutX="83.0" layoutY="410.0">
+         <image>
+            <Image url="@../images/Items/notebook.png" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="textField1" layoutX="260.0" layoutY="220.0" onKeyPressed="#textField1OnKeyPressed" prefHeight="200.0" prefWidth="250.0" styleClass="rounded-corner" />
+      <TextArea fx:id="textField2" layoutX="580.0" layoutY="220.0" prefHeight="200.0" prefWidth="250.0" styleClass="rounded-corner" />
+      <!-- <Button fx:id="swapButton" layoutX="521.0" layoutY="298.0" mnemonicParsing="false" onMouseClicked="#swapButtonOnMouseClicked" styleClass="swap"> -->
       <TextArea fx:id="textField1" layoutX="260.0" layoutY="220.0" onKeyPressed="#textField1OnKeyPressed" prefHeight="200.0" prefWidth="250.0" />
       <TextArea fx:id="textField2" layoutX="580.0" layoutY="220.0" prefHeight="200.0" prefWidth="250.0" />
       <Button fx:id="swapButton" layoutX="523.0" layoutY="298.0" mnemonicParsing="false" onMouseClicked="#swapButtonOnMouseClicked">
@@ -29,7 +47,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="speaker2" layoutX="780.0" layoutY="420.0" mnemonicParsing="false" onMouseClicked="#speaker2OnMouseClicked">
+      <Button fx:id="speaker2" layoutX="780.0" layoutY="420.0" mnemonicParsing="false" onMouseClicked="#speaker2OnMouseClicked" styleClass="speaker2">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0">
                <image>
@@ -38,7 +56,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="speaker1" layoutX="462.0" layoutY="420.0" mnemonicParsing="false" onMouseClicked="#speaker1OnMouseClicked">
+      <Button fx:id="speaker1" layoutX="462.0" layoutY="420.0" mnemonicParsing="false" onMouseClicked="#speaker1OnMouseClicked" styleClass="speaker1">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0">
                <image>
@@ -47,7 +65,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="micro2" layoutX="733.0" layoutY="420.0" mnemonicParsing="false" onMouseClicked="#micro2OnMouseClicked">
+      <Button fx:id="micro2" layoutX="733.0" layoutY="420.0" mnemonicParsing="false" onMouseClicked="#micro2OnMouseClicked" styleClass="micro2">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0">
                <image>
@@ -56,7 +74,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="micro1" layoutX="415.0" layoutY="420.0" mnemonicParsing="false" onMouseClicked="#micro1OnMouseClicked">
+      <Button fx:id="micro1" layoutX="415.0" layoutY="420.0" mnemonicParsing="false" onMouseClicked="#micro1OnMouseClicked" styleClass="micro1">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0">
                <image>

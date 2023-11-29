@@ -47,20 +47,19 @@ public class Word extends DualLanguageStructure{
     /**
      * Construct a word with content and meaning only.
      * @param content The content of the word
-     * @param meaning The meaning of the word
+     * @param description The description of the word
      * @param language The language of the word, ENGLISH or VIETNAMESE
      */
-    public Word(String content, String meaning, Language language) {
+    public Word(String content, String description, Language language) {
         this.content = content;
         this.meaning = new ArrayList<>();
-        this.addMeaning(meaning);
         this.language = language;
         this.wordClass = WordClass.NONE;
         this.pronunciation = "";
         this.antonyms = new ArrayList<>();
         this.synonyms = new ArrayList<>();
         this.sentences = new ArrayList<>();
-        this.description = "";
+        this.description = description;
     }
 
     public Word(String content, HTMLObject description, Language language) {

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../css/practice.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.oop2023.controller.PracticeController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1080.0">
+         <image>
+            <Image url="@../images/Practice/background-4.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="20.0" layoutY="20.0" onMouseClicked="#homeOnMouseClicked" styleClass="custom-icon">
+         <image>
+            <Image url="@../images/Practice/house.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="questionField" editable="false" focusTraversable="false" layoutX="250.0" layoutY="200.0" prefHeight="36.0" prefWidth="509.0" />
+      <TextField fx:id="answer1Field" editable="false" focusTraversable="false" layoutX="250.0" layoutY="270.0" prefHeight="36.0" prefWidth="509.0" styleClass="answer-field" />
+      <TextField fx:id="answer2Field" editable="false" focusTraversable="false" layoutX="250.0" layoutY="310.0" prefHeight="36.0" prefWidth="509.0" styleClass="answer-field" />
+      <TextField fx:id="answer3Field" editable="false" focusTraversable="false" layoutX="250.0" layoutY="350.0" prefHeight="36.0" prefWidth="509.0" styleClass="answer-field" />
+      <Label fx:id="timerLabel" layoutX="181.0" layoutY="127.0" prefHeight="34.0" prefWidth="223.0" styleClass="time-label" text="00:00" />
+      <Button fx:id="nextButton" layoutX="706.0" layoutY="446.0" mnemonicParsing="false" onMouseClicked="#nextQuestionOnClicked" styleClass="next-button" />
+      <Button fx:id="finishButton" layoutX="620.0" layoutY="446.0" mnemonicParsing="false" onMouseClicked="#checkButtonOnMouseClicked" styleClass="check-button" />
+      <RadioButton fx:id="optionA" layoutX="255.0" layoutY="280.0" mnemonicParsing="false" onMouseClicked="#optionAOnMouseClicked" text="A." />
+      <RadioButton fx:id="optionB" layoutX="255.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#optionBOnMouseClicked" text="B." />
+      <RadioButton fx:id="optionC" layoutX="255.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#optionCOnMouseClicked" text="C." />
+      <ImageView fx:id="readyImage" fitHeight="112.0" fitWidth="200.0" layoutX="456.0" layoutY="350.0">
+         <image>
+            <Image url="@../images/Practice/ready.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="startButton" fitHeight="200.0" fitWidth="200.0" layoutX="450.0" layoutY="216.0" onMouseClicked="#startButtonOnMouseClicked" styleClass="start-button">
+         <image>
+            <Image url="@../images/Practice/start-button.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

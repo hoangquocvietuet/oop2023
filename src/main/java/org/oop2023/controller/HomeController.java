@@ -1,5 +1,7 @@
 package org.oop2023.controller;
 
+import org.oop2023.Utils;
+
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -28,6 +30,8 @@ public class HomeController extends SceneController {
         phase1.setOnFinished(event -> phase2.play());
         phase1.setOnFinished(event -> phase1.play());
         phase1.play();
+
+        Utils.playBackgroundSound();
     };
 
     @FXML
@@ -45,6 +49,7 @@ public class HomeController extends SceneController {
     @FXML
     void dictionaryOnMouseClicked(MouseEvent event) {
         System.out.println("Dictionary clicked");
+        Utils.stopBackgroundSound();
         try {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             super.setDictionaryScene(stage);
@@ -53,9 +58,10 @@ public class HomeController extends SceneController {
         }
     }
 
-    @FXML 
+    @FXML
     void translateOnMouseClicked(MouseEvent event) {
         System.out.println("Translate clicked");
+        Utils.stopBackgroundSound();
         try {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             super.setTranslateScene(stage);
@@ -64,4 +70,31 @@ public class HomeController extends SceneController {
             System.out.println(e);
         }
     }
+
+    @FXML
+    void practiceOnMouseClicked(MouseEvent event) {
+        System.out.println("Practice clicked");
+        Utils.stopBackgroundSound();
+        try {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            super.setPracticeScene(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e);
+        }
+    }
+
+    @FXML
+    void gameOnMouseClicked(MouseEvent event) {
+        System.out.println("Game clicked");
+        Utils.stopBackgroundSound();
+        try {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            super.setGameScene(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e);
+        }
+    }
+
 }

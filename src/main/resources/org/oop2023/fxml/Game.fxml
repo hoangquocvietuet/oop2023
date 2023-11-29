@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.oop2023.controller.GameController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1080.0">
+         <image>
+            <Image url="@../images/Game/background.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="84.0" fitWidth="150.0" layoutX="60.0" layoutY="550.0">
+         <image>
+            <Image url="@../images/Game/bear.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="56.0" fitWidth="100.0" layoutX="823.0" layoutY="118.0">
+         <image>
+            <Image url="@../images/Game/duck.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="rule" fitHeight="504.0" fitWidth="800.0" layoutX="135.0" layoutY="-27.0">
+         <image>
+            <Image url="@../images/Game/rule.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="20.0" layoutY="20.0" onMouseClicked="#homeOnMouseClicked" styleClass="custom-icon">
+         <image>
+            <Image url="@../images/Game/house.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="playButton" fitHeight="100.0" fitWidth="100.0" layoutX="484.0" layoutY="361.0" onMouseClicked="#playButtonOnMouseClicked" styleClass="play-button">
+         <image>
+            <Image url="@../images/Game/play.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="84.0" fitWidth="150.0" layoutX="830.0" layoutY="545.0">
+         <image>
+            <Image url="@../images/Game/cat.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="textField1" editable="false" focusTraversable="false" layoutX="270.0" layoutY="520.0" prefHeight="60.0" prefWidth="60.0" styleClass="character" />
+      <TextField fx:id="textField2" editable="false" focusTraversable="false" layoutX="350.0" layoutY="520.0" prefHeight="60.0" prefWidth="60.0" styleClass="character" />
+      <TextField fx:id="textField3" editable="false" focusTraversable="false" layoutX="430.0" layoutY="520.0" prefHeight="60.0" prefWidth="60.0" styleClass="character" />
+      <TextField fx:id="textField4" editable="false" focusTraversable="false" layoutX="510.0" layoutY="520.0" prefHeight="60.0" prefWidth="60.0">
+         <styleClass>
+            <String fx:value="character" />
+            <String fx:value="special-character" />
+         </styleClass></TextField>
+      <TextField fx:id="textField5" editable="false" focusTraversable="false" layoutX="590.0" layoutY="520.0" prefHeight="60.0" prefWidth="60.0" styleClass="character" />
+      <TextField fx:id="textField6" editable="false" focusTraversable="false" layoutX="670.0" layoutY="520.0" prefHeight="60.0" prefWidth="60.0" styleClass="character" />
+      <TextField fx:id="textField7" editable="false" focusTraversable="false" layoutX="750.0" layoutY="520.0" prefHeight="60.0" prefWidth="60.0" styleClass="character" />
+      <TextField fx:id="answerField" focusTraversable="false" layoutX="293.0" layoutY="261.0" onKeyPressed="#answerFieldOnKeyPressed" prefHeight="66.0" prefWidth="496.0" styleClass="answer-field" />
+      <Label fx:id="scoreLabel" layoutX="476.0" layoutY="195.0" styleClass="score-label" text="0" />
+      <Label fx:id="timeLabel" layoutX="351.0" layoutY="195.0" styleClass="time-label" text="5:00" />
+      <Label fx:id="heartLabel" layoutX="570.0" layoutY="195.0" styleClass="heart-label" text="3" />
+      <ImageView fx:id="heart" fitHeight="30.0" fitWidth="30.0" layoutX="530.0" layoutY="190.0">
+         <image>
+            <Image url="@../images/Game/heart.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="clock" fitHeight="30.0" fitWidth="30.0" layoutX="310.0" layoutY="190.0">
+         <image>
+            <Image url="@../images/Game/clock.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="check" fitHeight="30.0" fitWidth="30.0" layoutX="426.0" layoutY="190.0">
+         <image>
+            <Image url="@../images/Game/check-mark.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

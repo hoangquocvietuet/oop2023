@@ -1,6 +1,6 @@
 package org.oop2023.utils.exceptions;
 
-public class APIException extends Exception {
+public abstract class APIException extends Exception {
     /**
      * Default constructor.
      */

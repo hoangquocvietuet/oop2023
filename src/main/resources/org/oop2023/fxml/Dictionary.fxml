@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="720.0" fitWidth="1080.0">
          <image>
-            <Image url="@../images/Dictionary/background-5.png" />
+            <Image url="@../images/Dictionary/background-6.png" />
          </image>
       </ImageView>
       <ImageView fx:id="home" fitHeight="60.0" fitWidth="60.0" layoutX="20.0" layoutY="20.0" onMouseClicked="#homeOnMouseClicked" styleClass="custom-icon">
@@ -21,18 +21,39 @@
             <Image url="@../images/Dictionary/house.png" />
          </image>
       </ImageView>
-      <TextField fx:id="searchField" layoutX="346.0" layoutY="207.0" onKeyPressed="#searchFieldOnKeyPressed" prefHeight="30.0" prefWidth="410.0">
+      <ImageView fitHeight="112.0" fitWidth="200.0" layoutX="20.0" layoutY="222.0">
+         <image>
+            <Image url="@../images/Items/notebook.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="112.0" fitWidth="200.0" layoutX="50.0" layoutY="396.0">
+         <image>
+            <Image url="@../images/Items/books.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="168.0" fitWidth="300.0" layoutX="414.0" layoutY="538.0">
+         <image>
+            <Image url="@../images/Items/book_country.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="searchField" layoutX="240.0" layoutY="205.0" onKeyPressed="#searchFieldOnKeyPressed" prefHeight="30.0" prefWidth="400.0">
          <styleClass>
             <String fx:value="search-box" />
             <String fx:value="rounded-corner" />
+            <String fx:value="search-field" />
          </styleClass></TextField>
-      <TextArea fx:id="resultField" editable="false" layoutX="346.0" layoutY="286.0" prefHeight="200.0" prefWidth="400.0">
+      <TextArea fx:id="resultField" editable="false" layoutX="580.0" layoutY="235.0" onKeyPressed="#resultFieldOnKeyPressed" prefHeight="250.0" prefWidth="300.0">
          <styleClass>
             <String fx:value="result" />
             <String fx:value="rounded-corner" />
+            <String fx:value="search-field" />
          </styleClass></TextArea>
-      <ListView fx:id="suggestionListView" layoutX="346.0" layoutY="236.0" prefHeight="249.0" prefWidth="400.0" styleClass="rounded-corner" />
-      <Button layoutX="709.0" layoutY="207.0" mnemonicParsing="false" onMouseClicked="#searchButtonOnMouseClicked">
+      <ListView fx:id="suggestionListView" layoutX="240.0" layoutY="235.0" onKeyPressed="#suggestionListViewOnKeyPressed" onMouseClicked="#suggestionListViewOnMouseClicked" prefHeight="250.0" prefWidth="300.0">
+         <styleClass>
+            <String fx:value="rounded-corner" />
+            <String fx:value="search-field" />
+         </styleClass></ListView>
+      <Button layoutX="503.0" layoutY="205.0" mnemonicParsing="false" onMouseClicked="#searchButtonOnMouseClicked">
          <graphic>
             <ImageView fitHeight="21.0" fitWidth="20.0" styleClass="search-button">
                <image>
@@ -41,5 +62,55 @@
             </ImageView>
          </graphic>
       </Button>
+      <Button fx:id="microButton" layoutX="466.0" layoutY="205.0" mnemonicParsing="false" onMouseClicked="#microOnMouseClicked">
+         <graphic>
+            <ImageView fitHeight="21.0" fitWidth="20.0">
+               <image>
+                  <Image url="@../images/Dictionary/microphone.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="addButton" layoutX="806.0" layoutY="485.0" mnemonicParsing="false" onMouseClicked="#addButtonOnMouseClicked">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0">
+               <image>
+                  <Image url="@../images/Dictionary/add.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="editButton" layoutX="842.0" layoutY="485.0" mnemonicParsing="false" onMouseClicked="#editButtonOnMouseClicked">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0">
+               <image>
+                  <Image url="@../images/Dictionary/pencil.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ImageView fx:id="span" fitHeight="504.0" fitWidth="900.0" layoutX="110.0">
+         <image>
+            <Image url="@../images/Dictionary/span.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="closeButton" layoutX="520.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#closeButtonOnMouseClicked" text="Close">
+         <styleClass>
+            <String fx:value="close-button" />
+            <String fx:value="rounded-corner" />
+         </styleClass>
+      </Button>
+      <Button fx:id="doneButton" layoutX="570.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#doneButtonOnMouseClicked" text="Done">
+         <styleClass>
+            <String fx:value="done-button" />
+            <String fx:value="rounded-corner" />
+         </styleClass></Button>
+      <TextField fx:id="wordField" layoutX="255.0" layoutY="265.0" prefHeight="30.0" prefWidth="605.0" promptText="Word" styleClass="rounded-corner" />
+      <TextArea fx:id="desField" layoutX="255.0" layoutY="295.0" prefHeight="175.0" prefWidth="605.0" promptText="Description">
+         <styleClass>
+            <String fx:value="insert-field" />
+            <String fx:value="rounded-corner" />
+         </styleClass>
+      </TextArea>
    </children>
 </Pane>

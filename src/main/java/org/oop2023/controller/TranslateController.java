@@ -1,5 +1,14 @@
 package org.oop2023.controller;
 
+import java.time.LocalTime;
+
+import org.oop2023.Utils;
+import org.oop2023.services.textToSpeechAPI.Speaker;
+
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -11,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class TranslateController extends SceneController {
+    private static int apiCallCount = 0;
 
     @FXML
     private ImageView Home;
@@ -40,6 +50,19 @@ public class TranslateController extends SceneController {
     public void initialize() {
         textField1.setPromptText("English");
         textField2.setPromptText("Vietnamese");
+        textField1.textProperty().addListener((observable, oldValue, newValue) -> {
+            textField1.setText(newValue);
+        });
+
+        textField1.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue.contains("\n")) {
+                    textField1.setText(oldValue);
+                }
+            }
+        });
+
     };
 
     @FXML
@@ -66,11 +89,13 @@ public class TranslateController extends SceneController {
     @FXML
     void speaker1OnMouseClicked(MouseEvent event) {
         System.out.println("Speaker 1 clicked");
+        Utils.speakWord(textField1.getText()); 
     }
 
     @FXML
     void speaker2OnMouseClicked(MouseEvent event) {
         System.out.println("Speaker 2 clicked");
+        Utils.speakWord(textField2.getText());
     }
 
     @FXML
@@ -78,15 +103,44 @@ public class TranslateController extends SceneController {
         System.out.println("Swap button clicked");
     }
 
-    void translate(String text) {
-        textField2.setText(text);
-    }
+    void translate() {
+        String text = textField1.getText();
+        System.out.println("translate " + text);
+        int thisApiCallNumber = ++ apiCallCount;
 
-    @FXML 
+        Task<Void> apiCallTask = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                // Gọi API ở đây và lưu kết quả vào biến
+                // Giả sử API mất 5 giây để trả lời
+                if (thisApiCallNumber != apiCallCount) {
+                    return null;
+                }
+                String resultText = Utils.translator.EtoV(text);
+    
+                // Cập nhật giao diện người dùng với kết quả từ API
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Chỉ cập nhật giao diện nếu đây là lần gọi API cuối cùng
+                        if (thisApiCallNumber == apiCallCount) {
+                            // Giả sử textField là một trường văn bản trong giao diện người dùng của bạn
+                            textField2.setText(resultText);
+                        }
+                    }
+                });
+    
+                return null;
+            }
+        };
+
+        new Thread(apiCallTask).start();
+    }   
+
+    @FXML
     void textField1OnKeyPressed(KeyEvent event) {
         if(event.getCode() == KeyCode.ENTER) {
-            String text = textField1.getText();
-            translate(text);
+            translate();
         }
     }
 }
